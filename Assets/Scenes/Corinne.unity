@@ -563,6 +563,7 @@ GameObject:
   - component: {fileID: 803929449}
   - component: {fileID: 803929448}
   - component: {fileID: 803929452}
+  - component: {fileID: 803929453}
   m_Layer: 0
   m_Name: RatKing
   m_TagString: Enemy
@@ -683,8 +684,26 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &803929453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803929447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db107de2e1332374eabedce000667711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 803929452}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerDistance: 0
+  speed: 3
 --- !u!1 &1676922373
 GameObject:
   m_ObjectHideFlags: 0
