@@ -4,81 +4,116 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class PatrolRat : MonoBehaviour
-{
-    public Transform patrolRoute; //waypoints
-    public Transform pills; //Player
+{ 
+    public NavMeshAgent agent;
+    public Transform player;
+    public LayerMask whatIsGround, whatIsPlayer;
+    public float health;
 
-    public float speed = 2f;
-    public int t = 0;
-    private NavMeshAgent agent;
-    private Transform[] locations;
-    private bool chasingPlayer = false;
+    [Header("Attacking")]
+    public float timeBetweenAttacks;
+    private bool alreadyAttacked;
+    public GameObject projectile;
 
-    void Start()
+    [Header("Patroling")]
+    public Vector3 walkPoint;
+    bool walkPointSet;
+    public float walkPointRange;
+
+    [Header("States")]
+    public float sightRange, attackRange;
+    public bool playerInSightRange, playerInAttackRange;
+
+    // Start is called before the first frame update
+    void Awake()
     {
-
-        //swapped vectors out for waypoints
+        player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
-        // Set different colors for each object
-        InitializePatrolRoute();
-        MoveToNextPatrolLocation();
-
-
     }
 
-    void Update()
+    private void Update()
     {
+        //Check for sight and attack range
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
+        if (!playerInSightRange && !playerInAttackRange) Patroling();
+        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+        if (playerInSightRange && playerInAttackRange) AttackPlayer();
+    }
 
-        //locate player and chase if within close proximity
-        if (!chasingPlayer && !agent.pathPending && agent.remainingDistance < 0.2f)
+    private void Patroling() 
+    {
+        if (!walkPointSet) SearchWalkPoint();
+
+        if (walkPointSet) SearchWalkPoint();
         {
-            MoveToNextPatrolLocation();
+            agent.SetDestination(walkPoint);
         }
 
-    }
+        Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
-    void MoveToNextPatrolLocation() //enemy moves to next location
-    {
-        if (locations.Length == 0) return;
+        //Walkpoint Reached
+        if (distanceToWalkPoint.magnitude < 1f)
         {
-            agent.SetDestination(locations[t].position);
-            t = (t + 1) % locations.Length;
-        }
-    }
-
-    void InitializePatrolRoute()//method initialized patrol route
-    {
-        locations = new Transform[patrolRoute.childCount];
-        for (int i = 0; i < patrolRoute.childCount; i++)
-        {
-            locations[i] = patrolRoute.GetChild(i);
+            walkPointSet = false;
         }
     }
 
-
-    void OnCollisionEnter(Collision collision) //method recognizes collision
+    private void SearchWalkPoint()
     {
-        if (collision.gameObject.name == "Player")
-        {
-            Debug.Log("Halt!");
-        }
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
 
-        if (collision.gameObject.name == "Player")
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
         {
-            Debug.Log("Player detected - start chasing!");
-            chasingPlayer = true;
-            agent.SetDestination(pills.position);
+            walkPointSet = true;
         }
     }
 
-    void OnCollisionExit(Collision collision) //method for end of collision
+    private void ChasePlayer()
     {
-        if (collision.gameObject.name == "Player")
+        //make sure enemy doesn't move
+        agent.SetDestination(player.position);
+    }
+
+    // Update is called once per frame
+    void AttackPlayer()
+    {
+        agent.SetDestination(transform.position);
+
+        transform.LookAt(player);
+
+        if (!alreadyAttacked)
         {
-            Debug.Log("Player out of range - resume patrol.");
-            chasingPlayer = false;
-            MoveToNextPatrolLocation();
+            //Attack code
+            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+
+            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 4f, ForceMode.Impulse);
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
+    }
+
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+        
+    }
+
+    private void DestroyEnemy()
+    {
+        Destroy(gameObject);
     }
 }

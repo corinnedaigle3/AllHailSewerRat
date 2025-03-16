@@ -1,49 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RatKing : MonoBehaviour
 {
-    public Rigidbody rb;
-    public LayerMask playerLayer;
+    public NavMeshAgent agent;
+    public Transform player;
+    public LayerMask whatIsGround, whatIsPlayer;
 
-    public float playerDistance;
-    public float speed;
+    [Header("Attacking")]
+    public float timeBetweenAttacks;
+    private bool alreadyAttacked;
+
+    [Header("States")]
+    public float sightRange, attackRange;
+    public bool playerInSightRange, playerInAttackRange;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        player = GameObject.Find("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
-        CheckForPlayer();
-        
+        //Check for sight and attack range
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+        if (playerInSightRange && !playerInAttackRange) RunFromPlayer();
+        if (playerInSightRange && playerInAttackRange) AttackPlayer();
+    }
+
+
+    private void RunFromPlayer()
+    {
 
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
-        rb.velocity = new Vector3(speed, rb.velocity.y, rb.velocity.z);
-    }
-
-    void CheckForPlayer()
-    {
-        Vector3 direction = transform.forward;
-
-        RaycastHit hitPlayer;
-        Physics.Raycast(transform.position, direction, out hitPlayer, playerDistance, playerLayer);
-
-        if (hitPlayer.collider == true)
-        {
-
-        }
-    }
-
-    IEnumerable PlayerDetected()
+    void AttackPlayer()
     {
         
     }
+
 }
