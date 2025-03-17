@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Cinemachine;
+
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
     public float groundDrag;
+    public float rotationSpeed;
 
     public float jumpForce;
     public float jmpCooldown;
@@ -20,7 +23,9 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask ground;
     bool isGround;
 
-    public Transform orientation;
+   // public Transform orientation;
+
+    [SerializeField] Camera cam;
 
     float hInput;
     float vInput;
@@ -31,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
     void Update()
     {
@@ -42,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         // handle drag
         if (isGround)
         {
+            
             rb.drag = groundDrag;
         }
         else
@@ -68,22 +76,38 @@ public class PlayerMovement : MonoBehaviour
 
     void movePlayer()
     {
-        moveDirection = orientation.forward * vInput + orientation.right * hInput;
+        // Get the camera's forward and right vectors (ignoring y-axis)
+        Vector3 camForward = new Vector3(cam.transform.forward.x, 0f, cam.transform.forward.z).normalized;
+        Vector3 camRight = new Vector3(cam.transform.right.x, 0f, cam.transform.right.z).normalized;
+
+        // Calculate movement direction based on camera
+        moveDirection = camForward * vInput + camRight * hInput;
+
+       
+        // Apply movement force
         if (isGround)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-        } else if (!isGround)
+        }
+        else
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMulti, ForceMode.Force);
-
         }
+       
+        // Rotate player to face movement direction without affecting the movement itself
+        if (moveDirection != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
+        }
+        
     }
-   
     void Jump()
     {
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+       
     }
 
     private void resetJump()
