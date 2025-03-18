@@ -8,7 +8,8 @@ public class RatKing : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
-    public float health;
+    public float health = 10f;
+    public float damage = 2f;
 
     [Header("Attacking")]
     public float timeBetweenAttacks;
@@ -19,8 +20,17 @@ public class RatKing : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    [Header("Dodge Player")]
     public float detectionPauseTime;
     public float distanceFromPlayer = 5f;
+
+    [Header("Dodge Projectiles")]
+    public float dodgeDistance = 2f;
+    public float dodgeSpeed = 5f;
+    public float dodgeAngle = 90f;
+
+    private Rigidbody rb;
+    private bool isDodging = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -28,7 +38,7 @@ public class RatKing : MonoBehaviour
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         transform.LookAt(player);
-
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -73,17 +83,36 @@ public class RatKing : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage)
+    private void Dodge()
     {
-        health -= damage;
+        if (isDodging)
+        {
+            // Dodge movement
+            rb.MovePosition(rb.position + transform.up * dodgeSpeed * Time.deltaTime);
+            isDodging = false;
+        }
+    }
 
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "ProjectileDodgeWindow")
+        {
+            // Dodge
+            isDodging = true;
+            Vector2 dodgeDirection = Vector2.right;
+            rb.AddForce(dodgeDirection * dodgeSpeed, ForceMode.Impulse);
+        }
 
+        if (other.tag == "Projectile")
+        {
+            health -= damage;
+
+            if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+        }
     }
 
     private void DestroyEnemy()
     {
         Destroy(gameObject);
     }
-
 }
