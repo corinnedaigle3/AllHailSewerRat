@@ -27,6 +27,8 @@ public class RatKing : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        transform.LookAt(player);
+
     }
 
     private void Update()
