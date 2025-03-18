@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class RatKing : MonoBehaviour
 {
@@ -17,8 +18,8 @@ public class RatKing : MonoBehaviour
     public GameObject projectile;
 
     [Header("States")]
-    public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public float sightRange, attackRange, textRange;
+    public bool playerInSightRange, playerInAttackRange, playerInTextRange;
 
     [Header("Dodge Player")]
     public float detectionPauseTime;
@@ -28,9 +29,12 @@ public class RatKing : MonoBehaviour
     public float dodgeDistance = 2f;
     public float dodgeSpeed = 5f;
     public float dodgeAngle = 90f;
-
     private Rigidbody rb;
     private bool isDodging = false;
+
+    [Header("Script")]
+    public TextMeshProUGUI text;
+    public float fadeTime = 1f;
 
     // Start is called before the first frame update
     void Awake()
@@ -39,6 +43,7 @@ public class RatKing : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         transform.LookAt(player);
         rb = GetComponent<Rigidbody>();
+
     }
 
     private void Update()
@@ -46,9 +51,21 @@ public class RatKing : MonoBehaviour
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        playerInTextRange = Physics.CheckSphere(transform.position, textRange, whatIsPlayer);
 
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        if (playerInSightRange && playerInTextRange && !playerInAttackRange)
+        {
+            ChasePlayer();
+        }
+        if (playerInSightRange && playerInTextRange && playerInAttackRange)
+        {
+            AttackPlayer();
+        }
+        if (!playerInSightRange && !playerInAttackRange && playerInTextRange)
+        {
+            TextUpdate();
+        }
+
     }
 
     private void ChasePlayer()
@@ -114,5 +131,17 @@ public class RatKing : MonoBehaviour
     private void DestroyEnemy()
     {
         Destroy(gameObject);
+    }
+
+    private void TextUpdate()
+    {
+        text.text = "You dare challenge the all mighty and powerful Rat King!?!";
+
+        if (fadeTime > 0)
+        {
+            fadeTime -= Time.deltaTime;
+            text.color = new Color(text.color.r, text.color.g, text.color.b, fadeTime);
+        }
+        
     }
 }
