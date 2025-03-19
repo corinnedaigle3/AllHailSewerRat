@@ -241,7 +241,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Here we go again
+  m_text: '"Here we go again."'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Die Peasant!
+  m_text: '"Die Peasant!"'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -789,7 +789,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 4
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -836,8 +836,10 @@ MonoBehaviour:
   dodgeDistance: 2
   dodgeSpeed: 5
   dodgeAngle: 90
-  text: {fileID: 2050194368}
-  fadeTime: 2
+  ratKingTextC1: {fileID: 2050194368}
+  ratKingTextC2: {fileID: 1991589394}
+  ratKingTextC3: {fileID: 1947245779}
+  ratKingTextC4: {fileID: 1135422540}
 --- !u!1001 &979958230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -964,7 +966,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bye!
+  m_text: '"Bye!"'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1140,8 +1142,8 @@ RectTransform:
   - {fileID: 1991589393}
   - {fileID: 1947245778}
   - {fileID: 1135422539}
-  - {fileID: 572670219}
   - {fileID: 2109259489}
+  - {fileID: 572670219}
   - {fileID: 222184339}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1162,15 +1164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161b4080c7c195c4ebc224e36f6d262c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeTime: 1
-  showTime: 0
-  hasCheese1: {fileID: 0}
-  hasCheese2: {fileID: 0}
-  hasCheese3: {fileID: 0}
-  hasCheese4: {fileID: 0}
-  hasKey1: {fileID: 0}
-  hasKey2: {fileID: 0}
-  presentText: {fileID: 0}
 --- !u!4 &1360898218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7664769202925130913, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
@@ -1654,7 +1647,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Well would you look at the time, I really must be going...
+  m_text: '"Well would you look at the time, I really must be going..."'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1882,7 +1875,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '...
+  m_text: '(Realizes you have eatten the cheese)
+
 
 '
   m_isRightToLeft: 0
@@ -1978,7 +1972,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2050194367
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2018,7 +2012,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '"You dare challenge the all mighty and powerful Rat King!?!"'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2152,7 +2146,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You dare challenge the all mighty and powerful Rat King!?!
+  m_text: '"You dare challenge the all mighty and powerful Rat King!?!"'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

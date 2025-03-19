@@ -33,8 +33,13 @@ public class RatKing : MonoBehaviour
     private bool isDodging = false;
 
     [Header("Script")]
-    public TextMeshProUGUI text;
-    public float fadeTime = 1f;
+    public TextMeshProUGUI ratKingTextC1;
+    public TextMeshProUGUI ratKingTextC2;
+    public TextMeshProUGUI ratKingTextC3;
+    public TextMeshProUGUI ratKingTextC4;
+    private float textTimeC = 12f;
+    private float textTimeK = 6f;
+    private float textTimeP = 2f;
 
     // Start is called before the first frame update
     void Awake()
@@ -43,7 +48,6 @@ public class RatKing : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         transform.LookAt(player);
         rb = GetComponent<Rigidbody>();
-
     }
 
     private void Update()
@@ -135,13 +139,37 @@ public class RatKing : MonoBehaviour
 
     private void TextUpdate()
     {
-        text.text = "You dare challenge the all mighty and powerful Rat King!?!";
+        //"You dare challenge the all mighty and powerful Rat King!?!"
+        textTimeC -= Time.deltaTime;
+        textTimeK -= Time.deltaTime;
+        textTimeP -= Time.deltaTime;
 
-        if (fadeTime > 0)
+        if (textTimeC >= 9)
         {
-            fadeTime -= Time.deltaTime;
-            text.color = new Color(text.color.r, text.color.g, text.color.b, fadeTime);
+            ratKingTextC1.gameObject.SetActive(true);
         }
-        
+        else if (textTimeC >= 6)
+        {
+            ratKingTextC1.gameObject.SetActive(false);
+            ratKingTextC2.gameObject.SetActive(true);
+        }
+        else if (textTimeC >= 3)
+        {
+            ratKingTextC2.gameObject.SetActive(false);
+            ratKingTextC3.gameObject.SetActive(true);
+            
+        }
+        else if (textTimeC >= 1)
+        {
+            ratKingTextC3.gameObject.SetActive(false);
+            ratKingTextC4.gameObject.SetActive(true);
+        }
+        else
+        {
+            ratKingTextC1.gameObject.SetActive(false);
+            ratKingTextC2.gameObject.SetActive(false);
+            ratKingTextC3.gameObject.SetActive(false);
+            ratKingTextC4.gameObject.SetActive(false);
+        }
     }
 }
