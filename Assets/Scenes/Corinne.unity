@@ -1743,6 +1743,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2875421178616641582, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 364107043}
+    - target: {fileID: 2875421178616641582, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
       propertyPath: ground.m_Bits
       value: 32776
       objectReference: {fileID: 0}
