@@ -62,10 +62,10 @@ public class PlayerMovement : MonoBehaviour
         isGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
 
         // Get the camera's forward and right vectors (ignoring y-axis)
-
         camForward = new Vector3(cam.transform.forward.x, 0f, cam.transform.forward.z).normalized;
         camRight = new Vector3(cam.transform.right.x, 0f, cam.transform.right.z).normalized;
 
+        // Calculate movement direction based on camera
         moveDirection = camForward * vInput + camRight * hInput;
 
         playerInputs();
@@ -79,11 +79,12 @@ public class PlayerMovement : MonoBehaviour
         // handle drag
         if (isGround)
         {
-            
             rb.drag = groundDrag;
+
         }
         else
-            rb.drag = 0;
+            rb.drag = 0.75f;
+
     }
     void FixedUpdate()
     {
@@ -108,8 +109,8 @@ public class PlayerMovement : MonoBehaviour
 
     void movePlayer()
     {
-        // Calculate movement direction based on camera
         
+       
 
         // Apply movement force
         if (isGround)
@@ -120,9 +121,10 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMulti, ForceMode.Force);
         }
-       
-  
-        
+      
+
+
+
     }
     void Jump()
     {
