@@ -4,7 +4,7 @@ using TMPro;
 public class Interactor : MonoBehaviour
 {
     public Camera ThirdPersonCamera;
-    public Transform Player;  // Reference to the player character
+    public Transform Player;
     public float InteractionDistance = 3f;
     public GameObject interactionText;
     private InteractObject currentInteractable;
