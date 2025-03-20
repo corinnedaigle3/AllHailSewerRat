@@ -193,8 +193,8 @@ MonoBehaviour:
   timeBetweenAttacks: 1
   projectile: {fileID: 6788668502514363156, guid: bf86849402951c54989b8597e58104ba, type: 3}
   spawnPoint: {fileID: 522499287015571859}
-  sightRange: 8
-  attackRange: 6
+  sightRange: 10
+  attackRange: 8
   textRange: 15
   playerInSightRange: 0
   playerInAttackRange: 0

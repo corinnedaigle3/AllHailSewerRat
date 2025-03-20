@@ -60,17 +60,14 @@ public class RatKing : MonoBehaviour
 
         if (playerInSightRange && playerInTextRange && !playerInAttackRange)
         {
-            transform.LookAt(player);
             ChasePlayer();
         }
         if (playerInSightRange && playerInTextRange && playerInAttackRange)
         {
-            transform.LookAt(player);
             AttackPlayer();
         }
         if (!playerInSightRange && !playerInAttackRange && playerInTextRange)
         {
-            transform.LookAt(player);
             TextUpdate();
         }
 
@@ -132,7 +129,10 @@ public class RatKing : MonoBehaviour
         {
             health -= damage;
 
-            if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+            if (health <= 0)
+            {
+                //Back To Present
+            }
         }
     }
 
