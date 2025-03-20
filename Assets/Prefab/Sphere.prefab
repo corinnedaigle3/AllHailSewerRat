@@ -175,8 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9e137f966b00c498831dd977a5174c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 7586043061339305458, guid: fcae29662674fb943910a3a1f6a2e877, type: 3}
-  shootingForce: 700
+  lookAtPoint: {fileID: 4928331925124961167, guid: 71f43b7c505d4a7418c75a0127c0aad6, type: 3}
+  shootingForce: 10
 --- !u!54 &-1780674763127030399
 Rigidbody:
   m_ObjectHideFlags: 0

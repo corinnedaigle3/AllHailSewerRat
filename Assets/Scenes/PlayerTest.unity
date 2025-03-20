@@ -4545,14 +4545,22 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 652342998}
-    - target: {fileID: 3897219655034585842, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
+    - target: {fileID: 2875421178616641582, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
+      propertyPath: readyToShoot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3154503259042544065, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3154503259042544065, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050666054126350611, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 652342998}
-    - target: {fileID: 3897219655034585842, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
-      propertyPath: distanceFromCamera
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 7515203306641820812, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
       propertyPath: m_Name
       value: Player

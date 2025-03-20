@@ -5,7 +5,7 @@ using UnityEngine;
 public class LookAtPoint : MonoBehaviour
 {
     public Camera cam;
-    public float distanceFromCamera = 10f;
+    public float distanceFromCamera = 5f;
 
     void Update()
     {
@@ -14,5 +14,7 @@ public class LookAtPoint : MonoBehaviour
 
         // Position the point at a fixed distance from the camera, parallel to its view
         transform.position = cam.transform.position + oppositeSide * distanceFromCamera;
+
+        Debug.Log(oppositeSide);
     }
 }
