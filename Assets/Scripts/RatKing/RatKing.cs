@@ -10,12 +10,13 @@ public class RatKing : MonoBehaviour
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
     public float health = 10f;
-    public float damage = 2f;
+    private float damage = 2f;
 
     [Header("Attacking")]
     public float timeBetweenAttacks;
     private bool alreadyAttacked;
     public GameObject projectile;
+    public GameObject spawnPoint;
 
     [Header("States")]
     public float sightRange, attackRange, textRange;
@@ -59,14 +60,17 @@ public class RatKing : MonoBehaviour
 
         if (playerInSightRange && playerInTextRange && !playerInAttackRange)
         {
+            transform.LookAt(player);
             ChasePlayer();
         }
         if (playerInSightRange && playerInTextRange && playerInAttackRange)
         {
+            transform.LookAt(player);
             AttackPlayer();
         }
         if (!playerInSightRange && !playerInAttackRange && playerInTextRange)
         {
+            transform.LookAt(player);
             TextUpdate();
         }
 
@@ -89,9 +93,9 @@ public class RatKing : MonoBehaviour
         if (!alreadyAttacked)
         {
             //Attack code
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            Rigidbody rb = Instantiate(projectile, spawnPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
 
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            rb.AddForce(transform.forward * 34f, ForceMode.Impulse);
             rb.AddForce(transform.up * 4f, ForceMode.Impulse);
 
             alreadyAttacked = true;
@@ -141,8 +145,8 @@ public class RatKing : MonoBehaviour
     {
         //"You dare challenge the all mighty and powerful Rat King!?!"
         textTimeC -= Time.deltaTime;
-        textTimeK -= Time.deltaTime;
-        textTimeP -= Time.deltaTime;
+        //textTimeK -= Time.deltaTime;
+        //textTimeP -= Time.deltaTime;
 
         if (textTimeC >= 9)
         {
