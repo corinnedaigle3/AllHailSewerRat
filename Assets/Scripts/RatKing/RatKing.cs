@@ -9,8 +9,8 @@ public class RatKing : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
-    public float health = 10f;
-    private float damage = 2f;
+    private float health;
+    private float damage = 1f;
 
     [Header("Attacking")]
     public float timeBetweenAttacks;
@@ -38,9 +38,16 @@ public class RatKing : MonoBehaviour
     public TextMeshProUGUI ratKingTextC2;
     public TextMeshProUGUI ratKingTextC3;
     public TextMeshProUGUI ratKingTextC4;
+    public TextMeshProUGUI ratKingTextK1;
+    public TextMeshProUGUI ratKingTextK2;
+    public TextMeshProUGUI presentTextP1;
     private float textTimeC = 12f;
     private float textTimeK = 6f;
     private float textTimeP = 2f;
+
+    [Header ("Bools")]
+    public bool hasCheese;
+    public bool ratKingDead;
 
     // Start is called before the first frame update
     void Awake()
@@ -49,6 +56,8 @@ public class RatKing : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         transform.LookAt(player);
         rb = GetComponent<Rigidbody>();
+        ratKingDead = false;
+        hasCheese = false; //GameObject.Find("Player")GetComponent<>(PlayerScript).hasCheese;
     }
 
     private void Update()
@@ -70,14 +79,36 @@ public class RatKing : MonoBehaviour
         {
             TextUpdate();
         }
+    }
 
+    private void Health()
+    {
+        if (hasCheese == true && ratKingDead == false)
+        {
+            health = 1f;
+        }
+        else if (hasCheese == false && ratKingDead == false)
+        {
+            health = 50000f;
+        }
+        else 
+        {
+            health = 0f;
+        }
     }
 
     private void ChasePlayer()
     {
         //make sure enemy doesn't move
-        Vector3 moveFromPlayer = transform.position - player.position;
-        agent.SetDestination(transform.position + moveFromPlayer.normalized * distanceFromPlayer);
+        if (hasCheese == false && ratKingDead == false)
+        {
+            Vector3 moveFromPlayer = transform.position - player.position;
+            agent.SetDestination(transform.position + moveFromPlayer.normalized * distanceFromPlayer);
+        }
+        else 
+        {
+            agent.SetDestination(transform.position + player.transform.position * distanceFromPlayer);
+        }
     }
 
     // Update is called once per frame
@@ -95,8 +126,15 @@ public class RatKing : MonoBehaviour
             rb.AddForce(transform.forward * 34f, ForceMode.Impulse);
             rb.AddForce(transform.up * 4f, ForceMode.Impulse);
 
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            if (hasCheese == true && ratKingDead == false)
+            {
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            }
+            else
+            {
+                alreadyAttacked = true;
+            }
         }
     }
 
@@ -131,7 +169,9 @@ public class RatKing : MonoBehaviour
 
             if (health <= 0)
             {
-                //Back To Present
+                ratKingDead = true;
+                Debug.Log("Long live the King!");
+                //SceneManager.LoadScene("Present");
             }
         }
     }
@@ -145,35 +185,69 @@ public class RatKing : MonoBehaviour
     {
         //"You dare challenge the all mighty and powerful Rat King!?!"
         textTimeC -= Time.deltaTime;
-        //textTimeK -= Time.deltaTime;
-        //textTimeP -= Time.deltaTime;
+        textTimeK -= Time.deltaTime;
+        textTimeP -= Time.deltaTime;
 
-        if (textTimeC >= 9)
+        if (hasCheese == true && ratKingDead == false)
         {
-            ratKingTextC1.gameObject.SetActive(true);
-        }
-        else if (textTimeC >= 6)
-        {
-            ratKingTextC1.gameObject.SetActive(false);
-            ratKingTextC2.gameObject.SetActive(true);
-        }
-        else if (textTimeC >= 3)
-        {
-            ratKingTextC2.gameObject.SetActive(false);
-            ratKingTextC3.gameObject.SetActive(true);
+            if (textTimeC >= 9f)
+            {
+                ratKingTextC1.gameObject.SetActive(true);
+            }
+            else if (textTimeC >= 6f)
+            {
+                ratKingTextC1.gameObject.SetActive(false);
+                ratKingTextC2.gameObject.SetActive(true);
+            }
+            else if (textTimeC >= 3f)
+            {
+                ratKingTextC2.gameObject.SetActive(false);
+                ratKingTextC3.gameObject.SetActive(true);
             
+            }
+            else if (textTimeC >= 1f)
+            {
+                ratKingTextC3.gameObject.SetActive(false);
+                ratKingTextC4.gameObject.SetActive(true);
+            }
+            else
+            {
+                ratKingTextC1.gameObject.SetActive(false);
+                ratKingTextC2.gameObject.SetActive(false);
+                ratKingTextC3.gameObject.SetActive(false);
+                ratKingTextC4.gameObject.SetActive(false);
+            }
         }
-        else if (textTimeC >= 1)
+
+        if (hasCheese == false && ratKingDead == false)
         {
-            ratKingTextC3.gameObject.SetActive(false);
-            ratKingTextC4.gameObject.SetActive(true);
+            if (textTimeK >= 3f)
+            {
+                ratKingTextK1.gameObject.SetActive(true);
+            }
+            else if (textTimeK >= 1f)
+            {
+                ratKingTextK1.gameObject.SetActive(false);
+                ratKingTextK2.gameObject.SetActive(true);
+            }
+            else
+            {
+                ratKingTextK1.gameObject.SetActive(false);
+                ratKingTextK2.gameObject.SetActive(true);
+
+            }
         }
-        else
+
+        if (ratKingDead == true)
         {
-            ratKingTextC1.gameObject.SetActive(false);
-            ratKingTextC2.gameObject.SetActive(false);
-            ratKingTextC3.gameObject.SetActive(false);
-            ratKingTextC4.gameObject.SetActive(false);
+            if (textTimeP >= 1f)
+            {
+                presentTextP1.gameObject.SetActive(true);
+            }
+            else
+            {
+                ratKingTextK1.gameObject.SetActive(false);
+            }
         }
     }
 }
