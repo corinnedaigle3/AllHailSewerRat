@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Bullet")]
     public GameObject bullet;
-    bool shooting, readyToShoot;
+   public  bool shooting, readyToShoot;
 
     // public Transform orientation;
 
@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
         playerInputs();
 
 
-        if (shooting)
+        if (shooting && readyToShoot)
         {
             PlayerShoot();
         }

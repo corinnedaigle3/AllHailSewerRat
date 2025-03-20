@@ -6,7 +6,7 @@ using UnityEngine.Windows;
 public class Projectile : MonoBehaviour
 {
     Rigidbody rb;
-    public Camera cam;
+    public GameObject lookAtPoint;
     public float shootingForce = 1000f;
 
     private void Awake()
@@ -17,9 +17,9 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         // Get the camera's forward direction and apply force to the projectile
-        Vector3 shootingDirection = new Vector3(cam.transform.forward.x, 1f, cam.transform.forward.z).normalized;
+        Vector3 shootingDirection = (lookAtPoint.transform.position - transform.position).normalized;
 
-        rb.AddForce(shootingDirection * shootingForce);
+        rb.AddForce(shootingDirection * shootingForce, ForceMode.Impulse);
 
         StartCoroutine(SelfDestruction(3f));
     }
