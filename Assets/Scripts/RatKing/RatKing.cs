@@ -133,7 +133,7 @@ public class RatKing : MonoBehaviour
             }
             else
             {
-                alreadyAttacked = true;
+                alreadyAttacked = false;
             }
         }
     }
