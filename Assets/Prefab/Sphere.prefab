@@ -175,8 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9e137f966b00c498831dd977a5174c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookAtPoint: {fileID: 4928331925124961167, guid: 71f43b7c505d4a7418c75a0127c0aad6, type: 3}
-  shootingForce: 10
+  shootingForce: 1300
 --- !u!54 &-1780674763127030399
 Rigidbody:
   m_ObjectHideFlags: 0

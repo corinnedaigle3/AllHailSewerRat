@@ -25,12 +25,15 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Bullet")]
     public GameObject bullet;
-   public  bool shooting, readyToShoot;
+    public  bool shooting, readyToShoot;
 
     // public Transform orientation;
 
-    public Camera cam;
-    public Transform LookAtPoint;
+    private GameObject camera;
+    Transform cam;
+    private GameObject theLookAtPoint;
+    Transform lookAt;
+    private Transform LookAtPoint;
 
      float hInput;
      float vInput;
@@ -46,12 +49,15 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
-
+        theLookAtPoint = GameObject.Find("LookAtPoint");
+        camera = GameObject.Find("MainCamera");
+         cam = theLookAtPoint.GetComponent<Transform>();
+        lookAt = theLookAtPoint.GetComponent<Transform>();
     }
     void Update()
     {
+        PlayerLookRotation();
 
-    
         // ground check 
         isGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
 
@@ -61,13 +67,6 @@ public class PlayerMovement : MonoBehaviour
         camRight = new Vector3(cam.transform.right.x, 0f, cam.transform.right.z).normalized;
 
         moveDirection = camForward * vInput + camRight * hInput;
-
-        // Rotate player to face movement direction without affecting the movement itself
-        if (moveDirection != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
-        }
 
         playerInputs();
 
@@ -139,9 +138,19 @@ public class PlayerMovement : MonoBehaviour
     }
     void PlayerShoot()
     {
-       
+        LookAtPoint = theLookAtPoint.GetComponent<Transform>();
             Instantiate(bullet, LookAtPoint.position, Quaternion.identity);
            // bullet.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         
+    }
+
+    // Rotates the player according to look at point locatin 
+    void PlayerLookRotation()
+    {
+        Vector3 flatForward = new Vector3(lookAt.transform.forward.x, 0f, lookAt.transform.forward.z).normalized;
+        if (flatForward != Vector3.zero)
+        {
+            rb.rotation = Quaternion.LookRotation(flatForward);
+        }
     }
 }

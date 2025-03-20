@@ -44,5 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc6c136a4cbe7e49bf7b5e459653008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 7586043061339305458, guid: fcae29662674fb943910a3a1f6a2e877, type: 3}
   distanceFromCamera: 7
