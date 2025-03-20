@@ -1,17 +1,19 @@
 using UnityEngine;
 using TMPro;
 
-
 public class Interactor : MonoBehaviour
 {
-    public Camera PlayerCamera;
+    public Camera ThirdPersonCamera;
+    public Transform Player;  // Reference to the player character
     public float InteractionDistance = 3f;
     public GameObject interactionText;
     private InteractObject currentInteractable;
 
     void Update()
     {
-        Ray r = PlayerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        Ray r = new Ray(Player.position + Vector3.up, ThirdPersonCamera.transform.forward);
+        Debug.DrawRay(Player.position + Vector3.up, ThirdPersonCamera.transform.forward, Color.red);
+
         RaycastHit hit;
 
         if (Physics.Raycast(r, out hit, InteractionDistance))
@@ -39,5 +41,4 @@ public class Interactor : MonoBehaviour
             currentInteractable?.Interact();
         }
     }
-
 }
