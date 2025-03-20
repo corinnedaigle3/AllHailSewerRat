@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
 
     public void OnCollisionEnter()
     {
-        StartCoroutine(SelfDestruction(.2f));
+        StartCoroutine(SelfDestruction(.5f));
 
     }
     IEnumerator SelfDestruction(float waitTime)
