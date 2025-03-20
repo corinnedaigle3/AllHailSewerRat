@@ -23,15 +23,24 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask ground;
     bool isGround;
 
-   // public Transform orientation;
+    [Header("Bullet")]
+    public GameObject bullet;
+    bool shooting, readyToShoot;
 
-    [SerializeField] Camera cam;
+    // public Transform orientation;
 
-    float hInput;
-    float vInput;
+    public Camera cam;
+    public Transform LookAtPoint;
+
+     float hInput;
+     float vInput;
 
     Vector3 moveDirection;
     Rigidbody rb;
+
+    Vector3 camForward;
+    Vector3 camRight;
+    Vector3 playerLook;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -41,10 +50,32 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+
+    
         // ground check 
         isGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
 
+        // Get the camera's forward and right vectors (ignoring y-axis)
+
+        camForward = new Vector3(cam.transform.forward.x, 0f, cam.transform.forward.z).normalized;
+        camRight = new Vector3(cam.transform.right.x, 0f, cam.transform.right.z).normalized;
+
+        moveDirection = camForward * vInput + camRight * hInput;
+
+        // Rotate player to face movement direction without affecting the movement itself
+        if (moveDirection != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
+        }
+
         playerInputs();
+
+
+        if (shooting)
+        {
+            PlayerShoot();
+        }
 
         // handle drag
         if (isGround)
@@ -65,6 +96,8 @@ public class PlayerMovement : MonoBehaviour
         vInput = Input.GetAxis("Vertical");
         hInput = Input.GetAxis("Horizontal");
 
+        shooting = Input.GetKeyDown(KeyCode.Mouse0);
+
         if (Input.GetKey(KeyCode.Space) && readyToJump && isGround)
         {
             readyToJump = false;
@@ -76,14 +109,9 @@ public class PlayerMovement : MonoBehaviour
 
     void movePlayer()
     {
-        // Get the camera's forward and right vectors (ignoring y-axis)
-        Vector3 camForward = new Vector3(cam.transform.forward.x, 0f, cam.transform.forward.z).normalized;
-        Vector3 camRight = new Vector3(cam.transform.right.x, 0f, cam.transform.right.z).normalized;
-
         // Calculate movement direction based on camera
-        moveDirection = camForward * vInput + camRight * hInput;
+        
 
-       
         // Apply movement force
         if (isGround)
         {
@@ -94,12 +122,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMulti, ForceMode.Force);
         }
        
-        // Rotate player to face movement direction without affecting the movement itself
-        if (moveDirection != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
-        }
+  
         
     }
     void Jump()
@@ -113,5 +136,12 @@ public class PlayerMovement : MonoBehaviour
     private void resetJump()
     {
         readyToJump = true;   
+    }
+    void PlayerShoot()
+    {
+       
+            Instantiate(bullet, LookAtPoint.position, Quaternion.identity);
+           // bullet.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        
     }
 }

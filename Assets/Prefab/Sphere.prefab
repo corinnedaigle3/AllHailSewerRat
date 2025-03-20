@@ -51,8 +51,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.25
+  m_Height: 0.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6788668502514363156
@@ -67,6 +67,7 @@ GameObject:
   - component: {fileID: 9038104303961118600}
   - component: {fileID: 6359736275162541587}
   - component: {fileID: 8726721216073688649}
+  - component: {fileID: 3219067174833380127}
   - component: {fileID: -1780674763127030399}
   m_Layer: 0
   m_Name: Sphere
@@ -162,6 +163,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3219067174833380127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6788668502514363156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa9e137f966b00c498831dd977a5174c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 7586043061339305458, guid: fcae29662674fb943910a3a1f6a2e877, type: 3}
+  shootingForce: 700
 --- !u!54 &-1780674763127030399
 Rigidbody:
   m_ObjectHideFlags: 0
