@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class PatrolRat : MonoBehaviour
 { 
@@ -74,6 +76,7 @@ public class PatrolRat : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             Debug.Log("PlayerCaught!");
+            SceneManager.LoadScene("LoseScreen");
         }
     }
 
