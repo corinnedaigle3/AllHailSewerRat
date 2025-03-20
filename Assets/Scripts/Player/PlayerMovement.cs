@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed;
     public float groundDrag;
-    public float rotationSpeed;
 
     public float jumpForce;
     public float jmpCooldown;
@@ -70,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
         playerInputs();
 
-
+        // unlock shooting      
         if (shooting && readyToShoot)
         {
             PlayerShoot();
@@ -83,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
         else
-            rb.drag = 0.75f;
+            rb.drag = 0f;
 
     }
     void FixedUpdate()
@@ -109,26 +108,19 @@ public class PlayerMovement : MonoBehaviour
 
     void movePlayer()
     {
-        
-       
 
-        // Apply movement force
-        if (isGround)
+        if (hInput != 0 || vInput != 0)
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+            
         }
-        else
-        {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMulti, ForceMode.Force);
-        }
-      
-
-
 
     }
     void Jump()
     {
+        Debug.Log("Current rb velocity " + rb.velocity.magnitude);
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        Debug.Log("Current rb velocity " + rb.velocity.magnitude);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
        
