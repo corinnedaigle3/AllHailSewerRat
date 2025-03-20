@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed;
     public float groundDrag;
-    public float rotationSpeed;
 
     public float jumpForce;
     public float jmpCooldown;
@@ -62,15 +61,15 @@ public class PlayerMovement : MonoBehaviour
         isGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
 
         // Get the camera's forward and right vectors (ignoring y-axis)
-
         camForward = new Vector3(cam.transform.forward.x, 0f, cam.transform.forward.z).normalized;
         camRight = new Vector3(cam.transform.right.x, 0f, cam.transform.right.z).normalized;
 
+        // Calculate movement direction based on camera
         moveDirection = camForward * vInput + camRight * hInput;
 
         playerInputs();
 
-
+        // unlock shooting      
         if (shooting && readyToShoot)
         {
             PlayerShoot();
@@ -79,11 +78,12 @@ public class PlayerMovement : MonoBehaviour
         // handle drag
         if (isGround)
         {
-            
             rb.drag = groundDrag;
+
         }
         else
-            rb.drag = 0;
+            rb.drag = 0f;
+
     }
     void FixedUpdate()
     {
@@ -108,25 +108,19 @@ public class PlayerMovement : MonoBehaviour
 
     void movePlayer()
     {
-        // Calculate movement direction based on camera
-        
 
-        // Apply movement force
-        if (isGround)
+        if (hInput != 0 || vInput != 0)
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+            
         }
-        else
-        {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMulti, ForceMode.Force);
-        }
-       
-  
-        
+
     }
     void Jump()
     {
+        Debug.Log("Current rb velocity " + rb.velocity.magnitude);
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        Debug.Log("Current rb velocity " + rb.velocity.magnitude);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
        

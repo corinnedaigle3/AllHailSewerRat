@@ -8,6 +8,9 @@ TagManager:
   - Projectile
   - ProjectileDodgeWindow
   - Text
+  - GoingUP
+  - GoingDown
+  - Key
   layers:
   - Default
   - TransparentFX

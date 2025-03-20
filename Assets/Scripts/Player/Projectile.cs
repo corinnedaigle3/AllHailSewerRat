@@ -18,8 +18,8 @@ public class Projectile : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Look at point position: " + lookAtPoint.transform.position);
-        Debug.Log("The look at Postion " + lookAtPoint.transform.position + " and The transform position " + transform.position);
+        //Debug.Log("Look at point position: " + lookAtPoint.transform.position);
+        //Debug.Log("The look at Postion " + lookAtPoint.transform.position + " and The transform position " + transform.position);
         // Get the camera's forward direction and apply force to the projectile
         Vector3 shootingDirection = lookAtPoint.transform.forward;
 
