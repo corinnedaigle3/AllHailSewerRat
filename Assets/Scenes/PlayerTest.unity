@@ -4243,6 +4243,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7664769202925130913, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
   m_PrefabInstance: {fileID: 1412707124}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1092100696 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2875421178616641582, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
+  m_PrefabInstance: {fileID: 1412707124}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797461365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e0c757532e0364d959c5ac719947ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1162228457
 GameObject:
   m_ObjectHideFlags: 0
@@ -5326,6 +5337,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2372772688910647654, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1092100696}
+    - target: {fileID: 2875421178616641582, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
+      propertyPath: readyToShoot
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2947687101484117566, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
       propertyPath: interactionText
       value: 

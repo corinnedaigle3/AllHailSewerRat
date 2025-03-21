@@ -225,7 +225,7 @@ MonoBehaviour:
     m_Bits: 8
   bullet: {fileID: 6788668502514363156, guid: bf86849402951c54989b8597e58104ba, type: 3}
   shooting: 0
-  readyToShoot: 1
+  readyToShoot: 0
 --- !u!54 &3094285221186115364
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -334,6 +334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OpenDoorWithKey: 0
   OpenDoorWithCheese: 0
+  player: {fileID: 2875421178616641582}
 --- !u!1001 &4904690552845674721
 PrefabInstance:
   m_ObjectHideFlags: 0

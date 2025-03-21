@@ -9,11 +9,13 @@ public class GotItem : MonoBehaviour
     public bool OpenDoorWithKey;
     public bool OpenDoorWithCheese;
 
+    public PlayerMovement playerMovement;
 
     void Start()
     {
         OpenDoorWithKey = false;
         OpenDoorWithCheese = false;
+ 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,6 +40,8 @@ public class GotItem : MonoBehaviour
             Destroy(other.gameObject);
             cheeseCount++;
             OpenDoorWithCheese = true;
+            playerMovement.readyToShoot = true;
+
         }
     }
 }
