@@ -51,6 +51,7 @@ public class RatKing : MonoBehaviour
     public bool OpenDoorWithKey;
     public bool OpenDoorWithCheese;
     public bool ratKingDead;
+    public bool talking; 
 
     // Start is called before the first frame update
     void Awake()
