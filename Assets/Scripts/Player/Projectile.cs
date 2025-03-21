@@ -27,12 +27,15 @@ public class Projectile : MonoBehaviour
 
         Debug.Log("Shooting Direction is " + shootingDirection);
     }
-
-    public void OnCollisionEnter()
+    private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
+        }
         StartCoroutine(SelfDestruction(.5f));
-
     }
+
     IEnumerator SelfDestruction(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
