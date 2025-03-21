@@ -1,44 +1,58 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
     private onTrigger trigger;
-    private Vector3 Original_platform;
-    public float speed =5f;
+    private Vector3 originalPosition;
+    private Vector3 upPosition;
+    private Vector3 downPosition;
+    public float speed = 5f;
+    private bool isMoving = false;
 
     void Start()
     {
-        Original_platform = transform.position;
-        trigger = GetComponent<onTrigger>(); // Get the trigger component from THIS platform
+        originalPosition = transform.position;
+        upPosition = originalPosition + Vector3.up * 10;
+        downPosition = originalPosition + Vector3.down * 10;
 
-        if (trigger == null)
-        {
-            //Debug.LogError(gameObject.name);
-        }
+        trigger = GetComponent<onTrigger>();
+
     }
 
     void Update()
     {
-        if (trigger != null && trigger.OnUp)
+        if (!isMoving)
         {
-            PlatformUP();
+            if (trigger != null && trigger.OnUp)
+            {
+                StartCoroutine(MovePlatform(upPosition, originalPosition));
+            }
+            else if (trigger != null && trigger.OnDown)
+            {
+                StartCoroutine(MovePlatform(downPosition, originalPosition));
+            }
         }
-        else if (trigger != null && trigger.OnDown)
-        {
-            PlatformDown();
-        }
-
     }
 
-    void PlatformUP()
+    IEnumerator MovePlatform(Vector3 targetPosition, Vector3 returnPosition)
     {
-        transform.position += Vector3.up * speed * Time.deltaTime;
+        isMoving = true;
+        yield return StartCoroutine(MoveTo(targetPosition));
+        yield return new WaitForSeconds(5f);
+        yield return StartCoroutine(MoveTo(returnPosition));
+        isMoving = false;
     }
 
-    void PlatformDown()
+    IEnumerator MoveTo(Vector3 targetPosition)
     {
-        transform.position += Vector3.down * speed * Time.deltaTime;
+        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+        {
+            Vector3 direction = (targetPosition - transform.position).normalized;
+            transform.Translate(direction * speed * Time.deltaTime);
+            yield return null;
+        }
+
+        transform.position = targetPosition;
     }
 }

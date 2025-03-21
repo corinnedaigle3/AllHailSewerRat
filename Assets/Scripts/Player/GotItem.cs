@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GotKey : MonoBehaviour
+public class GotItem : MonoBehaviour
 {
     private int keyCount = 0;
+    private int cheeseCount = 0;
     public bool OpenDoorWithKey;
+    public bool OpenDoorWithCheese;
+
 
     void Start()
     {
         OpenDoorWithKey = false;
+        OpenDoorWithCheese = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,6 +31,13 @@ public class GotKey : MonoBehaviour
             {
                 Debug.Log("Keys collected: " + keyCount);
             }
+        }
+
+        if (other.CompareTag("Cheese"))
+        {
+            Destroy(other.gameObject);
+            cheeseCount++;
+            OpenDoorWithCheese = true;
         }
     }
 }

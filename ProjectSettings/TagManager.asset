@@ -11,6 +11,7 @@ TagManager:
   - GoingUP
   - GoingDown
   - Key
+  - Cheese
   layers:
   - Default
   - TransparentFX

@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class Door : MonoBehaviour
 {
     public GameObject player;
     public GameObject openDoor;
-    private GotKey gotKey;
+    private GotItem gotItem;
 
     void Start()
     {
         if (player != null)
         {
-            gotKey = player.GetComponent<GotKey>();
+            gotItem = player.GetComponent<GotItem>();
         }
 
 /*        if (gotKey == null)
@@ -21,12 +22,26 @@ public class Door : MonoBehaviour
         }*/
     }
 
-    public void DoorDisappear()
+    public void DoorWithKey()
     {
-        if (gotKey.OpenDoorWithKey)
+        if (gotItem.OpenDoorWithKey)
         {
             gameObject.SetActive(false);
             openDoor.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("Door cannot be opened.");
+        }
+    }
+
+    public void DoorWithCheese()
+    {
+        if (gotItem.OpenDoorWithCheese)
+        {
+            gameObject.SetActive(false);
+            openDoor.SetActive(true);
+
         }
         else
         {

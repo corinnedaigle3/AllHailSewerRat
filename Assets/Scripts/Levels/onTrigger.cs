@@ -17,15 +17,16 @@ public class onTrigger : MonoBehaviour
         }
     }
 
-/*    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && this.gameObject.name == "GoingUp")
+        if (other.CompareTag("Player") && gameObject.CompareTag("GoingUP"))
         {
             OnUp = false;
         }
-        if (other.CompareTag("Player") && this.gameObject.name == "GoingDown")
+        if (other.CompareTag("Player") && gameObject.CompareTag("GoingDown"))
         {
             OnDown = false;
         }
-    }*/
+    }
+
 }
