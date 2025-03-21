@@ -230,9 +230,8 @@ public class RatKing : MonoBehaviour
                 ratKingTextC2.gameObject.SetActive(false);
                 ratKingTextC3.gameObject.SetActive(false);
                 ratKingTextC4.gameObject.SetActive(false);
+                isTalking = false;
             }
-            isTalking = false;
-
         }
 
         if (OpenDoorWithCheese == false && ratKingDead == false)
@@ -252,23 +251,9 @@ public class RatKing : MonoBehaviour
             else
             {
                 ratKingTextK1.gameObject.SetActive(false);
-                ratKingTextK2.gameObject.SetActive(true);
-
+                ratKingTextK2.gameObject.SetActive(false);
+                isTalking = false;
             }
-            isTalking = false;
-
         }
-
-        /* if (ratKingDead == true)
-         {
-             if (textTimeP >= 1f)
-             {
-                 presentTextP1.gameObject.SetActive(true);
-             }
-             else
-             {
-                 presentTextP1.gameObject.SetActive(false);
-             }
-         }*/
     }
 }

@@ -100,7 +100,8 @@ MonoBehaviour:
   bullet: {fileID: 6788668502514363156, guid: bf86849402951c54989b8597e58104ba, type: 3}
   shooting: 0
   readyToShoot: 0
-  pTalking: 0
+  bTalking: 0
+  ratKing: {fileID: 792131270552595930, guid: 0cbc0b5ffcb7e40499e0019f95e72c43, type: 3}
 --- !u!136 &2692346285586827641
 CapsuleCollider:
   m_ObjectHideFlags: 0

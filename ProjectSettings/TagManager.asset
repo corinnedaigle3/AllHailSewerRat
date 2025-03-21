@@ -12,6 +12,7 @@ TagManager:
   - GoingDown
   - Key
   - Cheese
+  - RatKing
   layers:
   - Default
   - TransparentFX

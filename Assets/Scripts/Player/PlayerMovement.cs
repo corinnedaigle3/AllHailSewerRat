@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 playerLook;
 
     // Enemy Reference
-    GameObject ratKing;
+    public GameObject ratKing;
     RatKing rat;
 
     void Start()
@@ -126,7 +126,6 @@ public class PlayerMovement : MonoBehaviour
 
     void movePlayer()
     {
-
         if (hInput != 0 || vInput != 0)
         {
             rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
