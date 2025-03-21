@@ -46,7 +46,8 @@ public class RatKing : MonoBehaviour
     private float textTimeP = 2f;
 
     [Header ("Bools")]
-    public bool hasCheese;
+    public bool OpenDoorWithKey;
+    public bool OpenDoorWithCheese;
     public bool ratKingDead;
 
     // Start is called before the first frame update
@@ -57,7 +58,8 @@ public class RatKing : MonoBehaviour
         transform.LookAt(player);
         rb = GetComponent<Rigidbody>();
         ratKingDead = false;
-        hasCheese = false; //GameObject.Find("Player")GetComponent<>(PlayerScript).hasCheese;
+        OpenDoorWithCheese = GameObject.Find("Player").GetComponent<GotItem>().OpenDoorWithCheese;
+        OpenDoorWithKey = GameObject.Find("Player").GetComponent<GotItem>().OpenDoorWithKey;
     }
 
     private void Update()
@@ -83,11 +85,11 @@ public class RatKing : MonoBehaviour
 
     private void Health()
     {
-        if (hasCheese == true && ratKingDead == false)
+        if (OpenDoorWithCheese == true && ratKingDead == false)
         {
             health = 1f;
         }
-        else if (hasCheese == false && ratKingDead == false)
+        else if (OpenDoorWithCheese == false && ratKingDead == false && OpenDoorWithKey == true)
         {
             health = 50000f;
         }
@@ -100,14 +102,14 @@ public class RatKing : MonoBehaviour
     private void ChasePlayer()
     {
         //make sure enemy doesn't move
-        if (hasCheese == false && ratKingDead == false)
+        if (OpenDoorWithCheese == false && ratKingDead == false)
         {
             Vector3 moveFromPlayer = transform.position - player.position;
             agent.SetDestination(transform.position + moveFromPlayer.normalized * distanceFromPlayer);
         }
         else 
         {
-            agent.SetDestination(transform.position + player.transform.position * distanceFromPlayer);
+            agent.SetDestination(player.transform.position * distanceFromPlayer);
         }
     }
 
@@ -126,7 +128,7 @@ public class RatKing : MonoBehaviour
             rb.AddForce(transform.forward * 34f, ForceMode.Impulse);
             rb.AddForce(transform.up * 4f, ForceMode.Impulse);
 
-            if (hasCheese == true && ratKingDead == false)
+            if (OpenDoorWithCheese == true && ratKingDead == false)
             {
                 alreadyAttacked = true;
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -186,9 +188,9 @@ public class RatKing : MonoBehaviour
         //"You dare challenge the all mighty and powerful Rat King!?!"
         textTimeC -= Time.deltaTime;
         textTimeK -= Time.deltaTime;
-        textTimeP -= Time.deltaTime;
+        //textTimeP -= Time.deltaTime;
 
-        if (hasCheese == true && ratKingDead == false)
+        if (OpenDoorWithCheese == true && ratKingDead == false)
         {
             if (textTimeC >= 9f)
             {
@@ -219,7 +221,7 @@ public class RatKing : MonoBehaviour
             }
         }
 
-        if (hasCheese == false && ratKingDead == false)
+        if (OpenDoorWithCheese == false && ratKingDead == false)
         {
             if (textTimeK >= 3f)
             {
@@ -238,7 +240,7 @@ public class RatKing : MonoBehaviour
             }
         }
 
-        if (ratKingDead == true)
+       /* if (ratKingDead == true)
         {
             if (textTimeP >= 1f)
             {
@@ -246,8 +248,8 @@ public class RatKing : MonoBehaviour
             }
             else
             {
-                ratKingTextK1.gameObject.SetActive(false);
+                presentTextP1.gameObject.SetActive(false);
             }
-        }
+        }*/
     }
 }
