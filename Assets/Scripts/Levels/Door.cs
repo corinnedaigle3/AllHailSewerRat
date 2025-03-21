@@ -6,7 +6,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public GameObject player;
-    public GameObject openDoor;
+    //public GameObject openDoor;
     private GotItem gotItem;
 
     void Start()
@@ -27,11 +27,14 @@ public class Door : MonoBehaviour
         if (gotItem.OpenDoorWithKey)
         {
             gameObject.SetActive(false);
-            openDoor.SetActive(true);
+            //openDoor.SetActive(true);
+            Debug.Log("Door opened.");
+
         }
         else
         {
             Debug.Log("Door cannot be opened.");
+
         }
     }
 
@@ -40,6 +43,8 @@ public class Door : MonoBehaviour
         if (gotItem.OpenMiniDoorWithKey)
         {
             gameObject.SetActive(false);
+            Debug.Log("Door opened.");
+
         }
     }
 
@@ -48,7 +53,8 @@ public class Door : MonoBehaviour
         if (gotItem.OpenDoorWithCheese)
         {
             gameObject.SetActive(false);
-            openDoor.SetActive(true);
+            //openDoor.SetActive(true);
+            Debug.Log("Door opened.");
 
         }
         else

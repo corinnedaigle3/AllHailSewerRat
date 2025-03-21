@@ -34,6 +34,8 @@ public class GotItem : MonoBehaviour
             if (keyCount >= 3)
             {
                 OpenDoorWithKey = true;
+                Debug.Log("Keys collected: " + keyCount);
+
             }
             else
             {
@@ -47,6 +49,7 @@ public class GotItem : MonoBehaviour
             cheeseCount++;
             OpenDoorWithCheese = true;
             playerMovement.readyToShoot = true;
+            Debug.Log("Cheese collected: " + cheeseCount);
 
         }
     }
