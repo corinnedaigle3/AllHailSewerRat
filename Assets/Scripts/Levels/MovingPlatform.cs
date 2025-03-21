@@ -13,8 +13,8 @@ public class MovingPlatform : MonoBehaviour
     void Start()
     {
         originalPosition = transform.position;
-        upPosition = originalPosition + Vector3.up * 10;
-        downPosition = originalPosition + Vector3.down * 10;
+        upPosition = originalPosition + Vector3.up * 30;
+        downPosition = originalPosition + Vector3.down * 30;
 
         trigger = GetComponent<onTrigger>();
 
