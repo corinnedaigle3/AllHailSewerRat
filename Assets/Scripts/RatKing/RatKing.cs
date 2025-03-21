@@ -21,7 +21,7 @@ public class RatKing : MonoBehaviour
     public GameObject spawnPoint;
 
     [Header("States")]
-    public float sightRange, attackRange, textRange;
+    public int sightRange, attackRange, textRange;
     public bool playerInSightRange, playerInAttackRange, playerInTextRange;
 
     [Header("Dodge Player")]
