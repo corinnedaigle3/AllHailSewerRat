@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Bullet")]
     public GameObject bullet;
     public  bool shooting, readyToShoot;
+    public bool bTalking;
 
     // public Transform orientation;
 
@@ -43,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
     Vector3 camForward;
     Vector3 camRight;
     Vector3 playerLook;
+
+    // Enemy Reference
+    public GameObject ratKing;
+    RatKing rat;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -52,9 +58,11 @@ public class PlayerMovement : MonoBehaviour
         camera = GameObject.Find("MainCamera");
          cam = theLookAtPoint.GetComponent<Transform>();
         lookAt = theLookAtPoint.GetComponent<Transform>();
+        ratKing = GameObject.Find("RatKing");
     }
     void Update()
     {
+
         PlayerLookRotation();
 
         // ground check 
@@ -87,7 +95,17 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        movePlayer();
+        rat = ratKing.GetComponent<RatKing>();
+
+        bTalking = rat.isTalking;
+        Debug.Log("Boss is talking " + rat.isTalking);
+
+        Debug.Log("Boss is talking "+ bTalking);
+        if (!bTalking)
+        {
+            movePlayer();
+
+        }
     }
 
     void playerInputs()
@@ -108,7 +126,6 @@ public class PlayerMovement : MonoBehaviour
 
     void movePlayer()
     {
-
         if (hInput != 0 || vInput != 0)
         {
             rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);

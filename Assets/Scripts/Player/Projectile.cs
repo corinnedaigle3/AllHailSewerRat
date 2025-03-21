@@ -32,6 +32,8 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
+            Destroy(gameObject);
+
         }
         StartCoroutine(SelfDestruction(.5f));
     }

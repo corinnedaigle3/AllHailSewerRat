@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
-using UnityEngine.ProBuilder;
 
 public class RatKing : MonoBehaviour
 {
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
-    private float health;
-    private float damage = 1f;
+    //private float health;
+    //private float damage = 1f;
 
     [Header("Attacking")]
     public float timeBetweenAttacks;
@@ -45,12 +42,12 @@ public class RatKing : MonoBehaviour
     public TextMeshProUGUI presentTextP1;
     private float textTimeC = 12f;
     private float textTimeK = 6f;
-    private float textTimeP = 2f;
 
     [Header ("Bools")]
     public bool OpenDoorWithKey;
     public bool OpenDoorWithCheese;
     public bool ratKingDead;
+    public bool isTalking = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -85,7 +82,7 @@ public class RatKing : MonoBehaviour
         }
     }
 
-    private void Health()
+    /*private void Health()
     {
         if (OpenDoorWithCheese == true && ratKingDead == false)
         {
@@ -99,11 +96,10 @@ public class RatKing : MonoBehaviour
         {
             health = 0f;
         }
-    }
+    } */
 
     private void ChasePlayer()
     {
-        //make sure enemy doesn't move
         if (OpenDoorWithCheese == false && ratKingDead == false)
         {
             Vector3 moveFromPlayer = transform.position - player.position;
@@ -176,14 +172,7 @@ public class RatKing : MonoBehaviour
 
         if (other.tag == "Projectile")
         {
-            health -= damage;
-
-            if (health <= 0)
-            {
-                ratKingDead = true;
-                Debug.Log("Long live the King!");
                 //SceneManager.LoadScene("Present");
-            }
         }
     }
 
@@ -197,10 +186,11 @@ public class RatKing : MonoBehaviour
         //"You dare challenge the all mighty and powerful Rat King!?!"
         textTimeC -= Time.deltaTime;
         textTimeK -= Time.deltaTime;
-        //textTimeP -= Time.deltaTime;
 
         if (OpenDoorWithCheese == true && ratKingDead == false)
         {
+            isTalking = true;
+            Debug.Log("I am the boss And I am talking " + isTalking);
             if (textTimeC >= 9f)
             {
                 ratKingTextC1.gameObject.SetActive(true);
@@ -227,11 +217,15 @@ public class RatKing : MonoBehaviour
                 ratKingTextC2.gameObject.SetActive(false);
                 ratKingTextC3.gameObject.SetActive(false);
                 ratKingTextC4.gameObject.SetActive(false);
+                isTalking = false;
             }
         }
 
         if (OpenDoorWithCheese == false && ratKingDead == false)
         {
+            isTalking = true;
+            Debug.Log("I am the boss And I am talking " + isTalking);
+
             if (textTimeK >= 3f)
             {
                 ratKingTextK1.gameObject.SetActive(true);
@@ -244,21 +238,9 @@ public class RatKing : MonoBehaviour
             else
             {
                 ratKingTextK1.gameObject.SetActive(false);
-                ratKingTextK2.gameObject.SetActive(true);
-
+                ratKingTextK2.gameObject.SetActive(false);
+                isTalking = false;
             }
         }
-
-       /* if (ratKingDead == true)
-        {
-            if (textTimeP >= 1f)
-            {
-                presentTextP1.gameObject.SetActive(true);
-            }
-            else
-            {
-                presentTextP1.gameObject.SetActive(false);
-            }
-        }*/
     }
 }

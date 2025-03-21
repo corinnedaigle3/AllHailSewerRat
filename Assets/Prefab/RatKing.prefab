@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 5345821718617574819}
   m_Layer: 0
   m_Name: RatKing
-  m_TagString: Enemy
+  m_TagString: RatKing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,9 +189,9 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 65536
-  health: 20
   timeBetweenAttacks: 1
-  projectile: {fileID: 6788668502514363156, guid: bf86849402951c54989b8597e58104ba, type: 3}
+  projectileKey: {fileID: 0}
+  projectileCheese: {fileID: 0}
   spawnPoint: {fileID: 522499287015571859}
   sightRange: 10
   attackRange: 8
@@ -208,6 +208,13 @@ MonoBehaviour:
   ratKingTextC2: {fileID: 0}
   ratKingTextC3: {fileID: 0}
   ratKingTextC4: {fileID: 0}
+  ratKingTextK1: {fileID: 0}
+  ratKingTextK2: {fileID: 0}
+  presentTextP1: {fileID: 0}
+  OpenDoorWithKey: 0
+  OpenDoorWithCheese: 0
+  ratKingDead: 0
+  isTalking: 0
 --- !u!195 &5345821718617574819
 NavMeshAgent:
   m_ObjectHideFlags: 0
