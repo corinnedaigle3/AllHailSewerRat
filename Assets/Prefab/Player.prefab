@@ -74,7 +74,7 @@ CharacterController:
   m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &2875421178616641582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
   bullet: {fileID: 6788668502514363156, guid: bf86849402951c54989b8597e58104ba, type: 3}
   shooting: 0
   readyToShoot: 0
+  pTalking: 0
 --- !u!136 &2692346285586827641
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -119,10 +120,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.26
   m_Height: 1.7985897
   m_Direction: 1
-  m_Center: {x: 0, y: -0.081982374, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &3094285221186115364
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -226,7 +227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.93
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -264,6 +265,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ratMC_rig
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ce01a0696253e594f971e856eebceec1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

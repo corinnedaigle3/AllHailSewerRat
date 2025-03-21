@@ -21,7 +21,7 @@ public class RatKing : MonoBehaviour
     public GameObject spawnPoint;
 
     [Header("States")]
-    public int sightRange, attackRange, textRange;
+    public float sightRange, attackRange, textRange;
     public bool playerInSightRange, playerInAttackRange, playerInTextRange;
 
     [Header("Dodge Player")]
@@ -51,7 +51,7 @@ public class RatKing : MonoBehaviour
     public bool OpenDoorWithKey;
     public bool OpenDoorWithCheese;
     public bool ratKingDead;
-    public bool talking; 
+    public bool isTalking = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -202,6 +202,8 @@ public class RatKing : MonoBehaviour
 
         if (OpenDoorWithCheese == true && ratKingDead == false)
         {
+            isTalking = true;
+            Debug.Log("I am the boss And I am talking " + isTalking);
             if (textTimeC >= 9f)
             {
                 ratKingTextC1.gameObject.SetActive(true);
@@ -229,10 +231,15 @@ public class RatKing : MonoBehaviour
                 ratKingTextC3.gameObject.SetActive(false);
                 ratKingTextC4.gameObject.SetActive(false);
             }
+            isTalking = false;
+
         }
 
         if (OpenDoorWithCheese == false && ratKingDead == false)
         {
+            isTalking = true;
+            Debug.Log("I am the boss And I am talking " + isTalking);
+
             if (textTimeK >= 3f)
             {
                 ratKingTextK1.gameObject.SetActive(true);
@@ -248,18 +255,20 @@ public class RatKing : MonoBehaviour
                 ratKingTextK2.gameObject.SetActive(true);
 
             }
+            isTalking = false;
+
         }
 
-       /* if (ratKingDead == true)
-        {
-            if (textTimeP >= 1f)
-            {
-                presentTextP1.gameObject.SetActive(true);
-            }
-            else
-            {
-                presentTextP1.gameObject.SetActive(false);
-            }
-        }*/
+        /* if (ratKingDead == true)
+         {
+             if (textTimeP >= 1f)
+             {
+                 presentTextP1.gameObject.SetActive(true);
+             }
+             else
+             {
+                 presentTextP1.gameObject.SetActive(false);
+             }
+         }*/
     }
 }
