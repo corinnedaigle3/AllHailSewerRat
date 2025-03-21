@@ -7,8 +7,8 @@ public class RatKing : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
-    private float health;
-    private float damage = 1f;
+    //private float health;
+    //private float damage = 1f;
 
     [Header("Attacking")]
     public float timeBetweenAttacks;
@@ -42,7 +42,6 @@ public class RatKing : MonoBehaviour
     public TextMeshProUGUI presentTextP1;
     private float textTimeC = 12f;
     private float textTimeK = 6f;
-    private float textTimeP = 2f;
 
     [Header ("Bools")]
     public bool OpenDoorWithKey;
@@ -83,7 +82,7 @@ public class RatKing : MonoBehaviour
         }
     }
 
-    private void Health()
+    /*private void Health()
     {
         if (OpenDoorWithCheese == true && ratKingDead == false)
         {
@@ -97,11 +96,10 @@ public class RatKing : MonoBehaviour
         {
             health = 0f;
         }
-    }
+    } */
 
     private void ChasePlayer()
     {
-        //make sure enemy doesn't move
         if (OpenDoorWithCheese == false && ratKingDead == false)
         {
             Vector3 moveFromPlayer = transform.position - player.position;
@@ -174,14 +172,7 @@ public class RatKing : MonoBehaviour
 
         if (other.tag == "Projectile")
         {
-            health -= damage;
-
-            if (health <= 0)
-            {
-                ratKingDead = true;
-                Debug.Log("Long live the King!");
                 //SceneManager.LoadScene("Present");
-            }
         }
     }
 

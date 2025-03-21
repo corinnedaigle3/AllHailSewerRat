@@ -63,35 +63,17 @@ public class PatrolRat : MonoBehaviour
         }
     }
 
-
     private void ChasePlayer()
     {
-        //make sure enemy doesn't move
         agent.SetDestination(player.transform.position);
     }
 
     void OnCollisionEnter(Collision collision)
     {
-
         if (collision.gameObject.name == "Player")
         {
             Debug.Log("PlayerCaught!");
             SceneManager.LoadScene("LoseScreen");
         }
     }
-
-    // Update is called once per frame
-
-    /*public void TakeDamage(int damage)
-    {
-        health -= damage;
-
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
-        
-    }
-
-    private void DestroyEnemy()
-    {
-        Destroy(gameObject);
-    } */
 }
