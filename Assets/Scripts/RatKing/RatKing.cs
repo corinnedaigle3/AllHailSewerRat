@@ -7,8 +7,6 @@ public class RatKing : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
-    //private float health;
-    //private float damage = 1f;
 
     [Header("Attacking")]
     public float timeBetweenAttacks;
@@ -81,22 +79,6 @@ public class RatKing : MonoBehaviour
             TextUpdate();
         }
     }
-
-    /*private void Health()
-    {
-        if (OpenDoorWithCheese == true && ratKingDead == false)
-        {
-            health = 1f;
-        }
-        else if (OpenDoorWithCheese == false && ratKingDead == false && OpenDoorWithKey == true)
-        {
-            health = 50000f;
-        }
-        else 
-        {
-            health = 0f;
-        }
-    } */
 
     private void ChasePlayer()
     {
@@ -172,7 +154,7 @@ public class RatKing : MonoBehaviour
 
         if (other.tag == "Projectile")
         {
-                //SceneManager.LoadScene("Present");
+            //SceneManager.LoadScene("Present");
         }
     }
 
