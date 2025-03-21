@@ -136,7 +136,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!114 &672401644641864840
 MonoBehaviour:
@@ -156,12 +156,12 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 65536
-  health: 0
   agent: {fileID: 3055790458234947283}
   patrolRoute: {fileID: 0}
   player: {fileID: 0}
   t: 0
-  sightRange: 20
+  moveSpeed: 0
+  sightRange: 15
   playerInSightRange: 0
 --- !u!195 &3055790458234947283
 NavMeshAgent:
@@ -173,7 +173,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
