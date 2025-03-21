@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class PatrolRat : MonoBehaviour
 { 
     public LayerMask whatIsGround, whatIsPlayer;
-    public float health;
+    //public float health;
 
     [Header("Patroling")]
     public NavMeshAgent agent;
