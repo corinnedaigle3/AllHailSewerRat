@@ -35,6 +35,14 @@ public class Door : MonoBehaviour
         }
     }
 
+    public void MiniDoor()
+    {
+        if (gotItem.OpenMiniDoorWithKey)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     public void DoorWithCheese()
     {
         if (gotItem.OpenDoorWithCheese)

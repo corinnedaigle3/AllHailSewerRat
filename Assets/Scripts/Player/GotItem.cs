@@ -8,6 +8,7 @@ public class GotItem : MonoBehaviour
     private int cheeseCount = 0;
     public bool OpenDoorWithKey;
     public bool OpenDoorWithCheese;
+    public bool OpenMiniDoorWithKey;
 
     public PlayerMovement playerMovement;
 
@@ -24,6 +25,11 @@ public class GotItem : MonoBehaviour
         {
             Destroy(other.gameObject);
             keyCount++;
+
+            if (keyCount == 2)
+            {
+                OpenMiniDoorWithKey = true;
+            }
 
             if (keyCount >= 3)
             {
