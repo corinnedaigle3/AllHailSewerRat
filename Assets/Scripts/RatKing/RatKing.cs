@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
-using UnityEngine.ProBuilder;
 
 public class RatKing : MonoBehaviour
 {
@@ -198,7 +195,6 @@ public class RatKing : MonoBehaviour
         //"You dare challenge the all mighty and powerful Rat King!?!"
         textTimeC -= Time.deltaTime;
         textTimeK -= Time.deltaTime;
-        //textTimeP -= Time.deltaTime;
 
         if (OpenDoorWithCheese == true && ratKingDead == false)
         {
