@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1442681865298959324}
   - component: {fileID: 5323075199148700145}
   m_Layer: 0
-  m_Name: RatKingProjectile
+  m_Name: RatKingProjectileKey
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61900c37599a83347a19c5e1c0358abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loseScreenTimer: 0.5
 --- !u!54 &5323075199148700145
 Rigidbody:
   m_ObjectHideFlags: 0

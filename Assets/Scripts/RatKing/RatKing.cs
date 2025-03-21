@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
+using UnityEngine.ProBuilder;
 
 public class RatKing : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class RatKing : MonoBehaviour
     [Header("Attacking")]
     public float timeBetweenAttacks;
     private bool alreadyAttacked;
-    public GameObject projectile;
+    public GameObject projectileKey;
+    public GameObject projectileCheese;
     public GameObject spawnPoint;
 
     [Header("States")]
@@ -123,7 +125,14 @@ public class RatKing : MonoBehaviour
         if (!alreadyAttacked)
         {
             //Attack code
-            Rigidbody rb = Instantiate(projectile, spawnPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            if (OpenDoorWithCheese == true)
+            {
+                Rigidbody rb = Instantiate(projectileCheese, spawnPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            }
+            else 
+            {
+                Rigidbody rb = Instantiate(projectileKey, spawnPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            }
 
             rb.AddForce(transform.forward * 34f, ForceMode.Impulse);
             rb.AddForce(transform.up * 4f, ForceMode.Impulse);

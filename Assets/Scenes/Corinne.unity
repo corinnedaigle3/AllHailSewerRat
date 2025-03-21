@@ -2183,6 +2183,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 222184340}
     - target: {fileID: 1851143426617713882, guid: 0cbc0b5ffcb7e40499e0019f95e72c43, type: 3}
+      propertyPath: projectileKey
+      value: 
+      objectReference: {fileID: 868073487894231498, guid: c989153a582b7604dbdd24948a0b9ba1, type: 3}
+    - target: {fileID: 1851143426617713882, guid: 0cbc0b5ffcb7e40499e0019f95e72c43, type: 3}
       propertyPath: ratKingTextC1
       value: 
       objectReference: {fileID: 2050194368}
@@ -2206,6 +2210,10 @@ PrefabInstance:
       propertyPath: ratKingTextK2
       value: 
       objectReference: {fileID: 572670220}
+    - target: {fileID: 1851143426617713882, guid: 0cbc0b5ffcb7e40499e0019f95e72c43, type: 3}
+      propertyPath: projectileCheese
+      value: 
+      objectReference: {fileID: 8833922503176554108, guid: 618b0a63901ce4d47bb9a499365d8f2d, type: 3}
     - target: {fileID: 3128583476966837957, guid: 0cbc0b5ffcb7e40499e0019f95e72c43, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.99
