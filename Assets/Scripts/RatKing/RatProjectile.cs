@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class RatProjectile : MonoBehaviour
+{
+    public float loseScreenTimer = .5f;
+
+    // Update is called once per frame
+    void Update()
+    {
+        Destroy(gameObject, 4f);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        loseScreenTimer -= Time.deltaTime;
+
+        if (loseScreenTimer <= 0)
+        {
+            SceneManager.LoadScene("LoseScreen");
+        }
+    }
+}

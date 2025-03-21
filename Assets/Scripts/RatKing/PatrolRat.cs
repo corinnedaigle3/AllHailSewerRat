@@ -1,110 +1,88 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class PatrolRat : MonoBehaviour
 { 
-    public NavMeshAgent agent;
-    public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
-    public float health;
-
-    [Header("Attacking")]
-    public float timeBetweenAttacks;
-    private bool alreadyAttacked;
-    public GameObject projectile;
+    //public float health;
 
     [Header("Patroling")]
-    public Vector3 walkPoint;
-    bool walkPointSet;
-    public float walkPointRange;
+    public NavMeshAgent agent;
+    public Transform patrolRoute; //waypoints
+    public Transform player;
+    public int t = 0;
+    private Transform[] locations;
 
     [Header("States")]
-    public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public float sightRange;
+    public bool playerInSightRange;
 
     // Start is called before the first frame update
     void Awake()
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        InitializePatrolRoute();
+        MoveToNextPatrolLocation();
     }
 
     private void Update()
     {
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        if (!playerInSightRange && agent.remainingDistance < 0.2f) 
+        { 
+            MoveToNextPatrolLocation();
+        }
+        else 
+        {
+            ChasePlayer();
+        }
     }
 
-    private void Patroling() 
+    void MoveToNextPatrolLocation() //enemy moves to next location
     {
-        if (!walkPointSet) SearchWalkPoint();
-
-        if (walkPointSet) SearchWalkPoint();
+        if (locations.Length == 0) return;
         {
-            agent.SetDestination(walkPoint);
-        }
-
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        //Walkpoint Reached
-        if (distanceToWalkPoint.magnitude < 1f)
-        {
-            walkPointSet = false;
+            agent.SetDestination(locations[t].position);
+            t = (t + 1) % locations.Length;
         }
     }
 
-    private void SearchWalkPoint()
+    void InitializePatrolRoute()//method initialized patrol route
     {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        locations = new Transform[patrolRoute.childCount];
+        for (int i = 0; i < patrolRoute.childCount; i++)
         {
-            walkPointSet = true;
+            locations[i] = patrolRoute.GetChild(i);
         }
     }
+
 
     private void ChasePlayer()
     {
         //make sure enemy doesn't move
-        agent.SetDestination(player.position);
+        agent.SetDestination(player.transform.position);
     }
 
-    // Update is called once per frame
-    void AttackPlayer()
+    void OnCollisionEnter(Collision collision)
     {
-        agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
-
-        if (!alreadyAttacked)
+        if (collision.gameObject.name == "Player")
         {
-            //Attack code
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 4f, ForceMode.Impulse);
-
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            Debug.Log("PlayerCaught!");
+            SceneManager.LoadScene("LoseScreen");
         }
     }
 
-    private void ResetAttack()
-    {
-        alreadyAttacked = false;
-    }
+    // Update is called once per frame
 
-    public void TakeDamage(int damage)
+    /*public void TakeDamage(int damage)
     {
         health -= damage;
 
@@ -115,5 +93,5 @@ public class PatrolRat : MonoBehaviour
     private void DestroyEnemy()
     {
         Destroy(gameObject);
-    }
+    } */
 }

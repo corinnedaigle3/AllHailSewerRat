@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Projectile
+  - ProjectileDodgeWindow
+  - Text
+  - GoingUP
+  - GoingDown
+  - Key
+  - Cheese
   layers:
   - Default
   - TransparentFX
