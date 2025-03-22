@@ -64,11 +64,17 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         shooting = true;
-        readyToShoot = true;
+        //readyToShoot = true;
         PlayerLookRotation();
 
-        // ground check 
-        isGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
+
+        Vector3 rayOrigin = transform.position + Vector3.up * 0.1f; // Small offset to avoid ground clipping
+        float rayDistance = 0.6f; // Slightly increased distance
+        isGround = Physics.Raycast(rayOrigin, Vector3.down, rayDistance, ground);
+
+        // Debug the ray
+        Debug.DrawRay(rayOrigin, Vector3.down * rayDistance, isGround ? Color.green : Color.red);
+        //isGround = Physics.Raycast(transform.position, Vector3.down, 0.5f, ground);
 
         // Get the camera's forward and right vectors (ignoring y-axis)
         camForward = new Vector3(cam.transform.forward.x, 0f, cam.transform.forward.z).normalized;
@@ -80,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         playerInputs();
 
         // unlock shooting      
-        if (shooting && readyToShoot)
+        if (shooting && readyToShoot && !bTalking)
         {
             PlayerShoot();
         }
@@ -95,14 +101,16 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = 0f;
 
     }
+
+
     void FixedUpdate()
     {
         rat = ratKing.GetComponent<RatKing>();
 
         bTalking = rat.isTalking;
-        Debug.Log("Boss is talking " + rat.isTalking);
+       // Debug.Log("Boss is talking " + rat.isTalking);
 
-        Debug.Log("Boss is talking "+ bTalking);
+       // Debug.Log("Boss is talking "+ bTalking);
         if (!bTalking)
         {
             movePlayer();
@@ -141,9 +149,9 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jump()
     {
-        Debug.Log("Current rb velocity " + rb.velocity.magnitude);
+        //Debug.Log("Current rb velocity " + rb.velocity.magnitude);
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        Debug.Log("Current rb velocity " + rb.velocity.magnitude);
+       // Debug.Log("Current rb velocity " + rb.velocity.magnitude);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
        
