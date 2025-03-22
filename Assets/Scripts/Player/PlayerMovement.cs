@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
      public float hInput;
      public float vInput;
 
-    Vector3 moveDirection;
+    public Vector3 moveDirection;
     Rigidbody rb;
 
     Vector3 camForward;

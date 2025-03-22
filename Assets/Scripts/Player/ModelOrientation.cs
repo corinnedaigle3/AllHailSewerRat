@@ -16,7 +16,9 @@ public class ModelOrientation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         moveDirection = transform.forward * pMove.vInput * pMove.hInput;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), 1f * Time.deltaTime);
+     
+        transform.rotation = Quaternion.Slerp(transform.rotation, 
+            Quaternion.LookRotation(pMove.moveDirection),
+            10f * Time.deltaTime);
     }
 }

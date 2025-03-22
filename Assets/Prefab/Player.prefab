@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7664769202925130913}
   - component: {fileID: 5449788643021206129}
-  - component: {fileID: 1102758721342098836}
   - component: {fileID: 2875421178616641582}
   - component: {fileID: 2692346285586827641}
   - component: {fileID: 3094285221186115364}
@@ -50,32 +49,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7515203306641820812}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!143 &1102758721342098836
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7515203306641820812}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 0.1
-  m_Radius: 0.22
-  m_SlopeLimit: 60
-  m_StepOffset: 0
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2875421178616641582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +81,8 @@ MonoBehaviour:
   bTalking: 0
   hInput: 0
   vInput: 0
-  ratKing: {fileID: 792131270552595930, guid: 0cbc0b5ffcb7e40499e0019f95e72c43, type: 3}
+  moveDirection: {x: 0, y: 0, z: 0}
+  ratKing: {fileID: 0}
 --- !u!136 &2692346285586827641
 CapsuleCollider:
   m_ObjectHideFlags: 0
