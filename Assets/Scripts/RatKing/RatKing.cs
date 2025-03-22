@@ -62,7 +62,7 @@ public class RatKing : MonoBehaviour
         player = GameObject.Find("Player").transform;
         playerO = GameObject.Find("Player");
         agent = GetComponent<NavMeshAgent>();
-        transform.LookAt(player);
+        transform.LookAt(player.transform);
         rb = GetComponent<Rigidbody>();
         
         bM1.Play();
@@ -113,7 +113,7 @@ public class RatKing : MonoBehaviour
     {
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
+        
 
         if (!alreadyAttacked)
         {
