@@ -19,6 +19,8 @@ public class RatProjectile : MonoBehaviour
 
         if (loseScreenTimer <= 0)
         {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
             SceneManager.LoadScene("LoseScreen");
         }
     }

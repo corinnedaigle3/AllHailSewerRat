@@ -63,7 +63,8 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-
+        shooting = true;
+        readyToShoot = true;
         PlayerLookRotation();
 
         // ground check 

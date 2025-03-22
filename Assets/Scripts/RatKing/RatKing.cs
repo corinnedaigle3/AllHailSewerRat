@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
+using System.Runtime.CompilerServices;
 
 public class RatKing : MonoBehaviour
 {
+    [Header("Nav Mesh")]
     public NavMeshAgent agent;
     public Transform player;
+    public GameObject playerO;
     public LayerMask whatIsGround, whatIsPlayer;
 
     [Header("Music")]
@@ -50,26 +53,28 @@ public class RatKing : MonoBehaviour
     [Header ("Bools")]
     public bool ratKingDead = false;
     public bool isTalking = false;
-    public bool DoorWithCheese;
+    public bool DoorWithCheese = false;
     GotItem cheese; 
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         player = GameObject.Find("Player").transform;
+        playerO = GameObject.Find("Player");
         agent = GetComponent<NavMeshAgent>();
         transform.LookAt(player);
         rb = GetComponent<Rigidbody>();
-
+        
         bM1.Play();
         bM2.Play();
     }
 
     private void Update()
     {
-        cheese = player.GetComponent<GotItem>();
+        cheese = playerO.GetComponent<GotItem>();
         DoorWithCheese = cheese.OpenDoorWithCheese;
 
+        DoorWithCheese = true;
 
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -87,17 +92,6 @@ public class RatKing : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange && playerInTextRange)
         {
             TextUpdate();
-        }
-
-        if (DoorWithCheese == true && playerInTextRange == true)
-        {
-            bM1.Pause();
-            bM2.Pause();
-        }
-        else if (DoorWithCheese == false && playerInTextRange == false)
-        {
-            bM1.Play();
-            bM2.Play();
         }
     }
 
@@ -170,7 +164,7 @@ public class RatKing : MonoBehaviour
         {
             // Dodge
             isDodging = true;
-            Vector2 dodgeDirection = Vector2.right;
+            Vector3 dodgeDirection = Vector3.right;
             rb.AddForce(dodgeDirection * dodgeSpeed, ForceMode.Impulse);
         }
 
@@ -214,6 +208,8 @@ public class RatKing : MonoBehaviour
             {
                 ratKingTextC3.gameObject.SetActive(false);
                 ratKingTextC4.gameObject.SetActive(true);
+                bM1.Stop();
+                bM2.Stop();
                 chaseMusic.Play();
             }
             else
