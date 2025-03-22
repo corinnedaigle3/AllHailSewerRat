@@ -19,6 +19,15 @@ public class AnimationController : MonoBehaviour
     {
         animator.SetBool("inGround", pMovement.isGround); 
         animator.SetBool("isMoving", pMovement.isMoving);
-      
+        animator.SetBool("isJumping", pMovement.isJumping);
+
+        if (pMovement.isJumping)
+            StartCoroutine(changeBool(1f));
     }
+    IEnumerator changeBool(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        pMovement.isJumping = false;
+    }
+    
 }
