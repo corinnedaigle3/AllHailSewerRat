@@ -15,18 +15,18 @@ public class PatrolRat : MonoBehaviour
     public Transform player;
     public int t = 0;
     private Transform[] locations;
-    public float moveSpeed;
 
     [Header("States")]
     public int sightRange;
     public bool playerInSightRange;
+
+    Vector3 velocity = Vector3.zero;
 
     // Start is called before the first frame update
     void Awake()
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
-        moveSpeed = GameObject.Find("Player").GetComponent<PlayerMovement>().moveSpeed;
         InitializePatrolRoute();
         MoveToNextPatrolLocation();
     }
@@ -34,7 +34,7 @@ public class PatrolRat : MonoBehaviour
     private void FixedUpdate()
     {
         //Check for sight and attack range
-        playerInSightRange = Physics.CheckSphere(transform.position * moveSpeed, sightRange, whatIsPlayer);
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
 
         if (!playerInSightRange && agent.remainingDistance < 0.2f) 
         { 
@@ -49,6 +49,8 @@ public class PatrolRat : MonoBehaviour
 
     void MoveToNextPatrolLocation() //enemy moves to next location
     {
+        agent.updatePosition = true;
+
         if (locations.Length == 0) return;
         {
             agent.SetDestination(locations[t].position);
@@ -67,7 +69,9 @@ public class PatrolRat : MonoBehaviour
 
     private void ChasePlayer()
     {
-        agent.SetDestination(player.transform.position);
+        agent.updatePosition = false;
+        agent.SetDestination(player.position);
+        transform.position = Vector3.SmoothDamp(transform.position, agent.nextPosition, ref velocity, 0.1f);
     }
 
     void OnCollisionEnter(Collision collision)
