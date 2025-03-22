@@ -43,10 +43,10 @@ public class RatKing : MonoBehaviour
     private float textTimeK = 6f;
 
     [Header ("Bools")]
-    public bool OpenDoorWithKey = false;
-    public bool OpenDoorWithCheese = false;
     public bool ratKingDead = false;
     public bool isTalking = false;
+    public bool DoorWithCheese;
+    GotItem cheese; 
 
     // Start is called before the first frame update
     void Awake()
@@ -60,8 +60,9 @@ public class RatKing : MonoBehaviour
 
     private void Update()
     {
-        OpenDoorWithCheese = GameObject.Find("Player").GetComponent<GotItem>().OpenDoorWithCheese;
-        OpenDoorWithKey = GameObject.Find("Player").GetComponent<GotItem>().OpenDoorWithKey;
+        cheese = player.GetComponent<GotItem>();
+        DoorWithCheese = cheese.OpenDoorWithCheese;
+
 
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -84,11 +85,11 @@ public class RatKing : MonoBehaviour
 
     private void ChasePlayer()
     {
-        if (OpenDoorWithCheese == false && ratKingDead == false)
+        if (DoorWithCheese == false && ratKingDead == false)
         {
             agent.SetDestination(player.transform.position);
         }
-        if (OpenDoorWithCheese == true && ratKingDead == false)
+        if (DoorWithCheese == true && ratKingDead == false)
         {
             Vector3 moveFromPlayer = transform.position - player.position;
             agent.SetDestination(transform.position + moveFromPlayer.normalized * distanceFromPlayer);
@@ -105,11 +106,11 @@ public class RatKing : MonoBehaviour
         if (!alreadyAttacked)
         {
             //Attack code
-            if (OpenDoorWithCheese == true)
+            if (DoorWithCheese == true)
             {
                 Rigidbody rb = Instantiate(projectileCheese, spawnPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             }
-            if (OpenDoorWithCheese == false)
+            if (DoorWithCheese == false)
             {
                 Rigidbody rb = Instantiate(projectileKey, spawnPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
                 Debug.Log("Die!");
@@ -118,7 +119,7 @@ public class RatKing : MonoBehaviour
             rb.AddForce(transform.forward * 60f, ForceMode.Impulse);
             rb.AddForce(transform.up * 4f, ForceMode.Impulse);
 
-            if (OpenDoorWithCheese == true && ratKingDead == false)
+            if (DoorWithCheese == true && ratKingDead == false)
             {
                 alreadyAttacked = true;
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -172,7 +173,7 @@ public class RatKing : MonoBehaviour
         textTimeC -= Time.deltaTime;
         textTimeK -= Time.deltaTime;
 
-        if (OpenDoorWithCheese == true && ratKingDead == false)
+        if (DoorWithCheese == true && ratKingDead == false)
         {
             isTalking = true;
             Debug.Log("I am the boss And I am talking " + isTalking);
@@ -207,7 +208,7 @@ public class RatKing : MonoBehaviour
             }
         }
 
-        if (OpenDoorWithCheese == false && ratKingDead == false)
+        if (DoorWithCheese == false && ratKingDead == false)
         {
             isTalking = true;
             Debug.Log("I am the boss And I am talking " + isTalking);
