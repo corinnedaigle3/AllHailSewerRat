@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float jmpCooldown;
     public float airMulti;
     public bool readyToJump = true;
+    public bool isJumping;
 
 
     [Header("Ground Check")]
@@ -129,6 +130,8 @@ public class PlayerMovement : MonoBehaviour
         {
             readyToJump = false;
             Jump();
+            isJumping = true;
+
 
             Invoke(nameof(resetJump), jmpCooldown);
         }
