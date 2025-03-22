@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 518319341490532597}
   - component: {fileID: 446594304004620591}
   - component: {fileID: 5239746966491369850}
-  - component: {fileID: 2926115175601204066}
   - component: {fileID: 5039292875072061849}
   - component: {fileID: 449440647570730582}
+  - component: {fileID: 408485906252585020}
+  - component: {fileID: 2850558836856520751}
   m_Layer: 0
   m_Name: RatPatrol
   m_TagString: Enemy
@@ -95,20 +96,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 1
---- !u!114 &2926115175601204066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3932029929507979936}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dad9bd0aa4c63014e827720c35f26aa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5039292875072061849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +144,42 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &408485906252585020
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3932029929507979936}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 081930da5e255e348940373200bbeaca, type: 3}
+  m_Controller: {fileID: 9100000, guid: ce519a544a5417c4aa3c4251d620d5a4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!111 &2850558836856520751
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3932029929507979936}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 5987713911036300057, guid: 081930da5e255e348940373200bbeaca, type: 3}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &2091712530727240108
 PrefabInstance:
   m_ObjectHideFlags: 0
