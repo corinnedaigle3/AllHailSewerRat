@@ -8,6 +8,8 @@ public class Door : MonoBehaviour
     public GameObject player;
     //public GameObject openDoor;
     private GotItem gotItem;
+    public AudioSource doorCheese;
+    public AudioSource doorKey;
 
     void Start()
     {
@@ -29,7 +31,7 @@ public class Door : MonoBehaviour
             gameObject.SetActive(false);
             //openDoor.SetActive(true);
             Debug.Log("Door opened.");
-
+            doorKey.Play();
         }
         else
         {
@@ -55,7 +57,7 @@ public class Door : MonoBehaviour
             gameObject.SetActive(false);
             //openDoor.SetActive(true);
             Debug.Log("Door opened.");
-
+            doorCheese.Play();
         }
         else
         {
