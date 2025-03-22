@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed;
     public float groundDrag;
+    public bool dead = false;
 
     public float jumpForce;
     public float jmpCooldown;
@@ -37,8 +38,8 @@ public class PlayerMovement : MonoBehaviour
     Transform lookAt;
     private Transform LookAtPoint;
 
-     float hInput;
-     float vInput;
+     public float hInput;
+     public float vInput;
 
     Vector3 moveDirection;
     Rigidbody rb;
@@ -112,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
        // Debug.Log("Boss is talking " + rat.isTalking);
 
        // Debug.Log("Boss is talking "+ bTalking);
-        if (!bTalking)
+        if (!bTalking && !dead)
         {
             movePlayer();
 

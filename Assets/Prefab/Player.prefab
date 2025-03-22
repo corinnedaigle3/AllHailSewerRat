@@ -69,13 +69,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1
+  m_Height: 0.1
   m_Radius: 0.22
   m_SlopeLimit: 60
   m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2875421178616641582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,10 +90,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   groundDrag: 5
+  dead: 0
   jumpForce: 8
   jmpCooldown: 0.25
   airMulti: 0.1
   readyToJump: 1
+  isJumping: 0
   playerHeight: 2
   ground:
     serializedVersion: 2
@@ -104,6 +106,8 @@ MonoBehaviour:
   shooting: 0
   readyToShoot: 0
   bTalking: 0
+  hInput: 0
+  vInput: 0
   ratKing: {fileID: 792131270552595930, guid: 0cbc0b5ffcb7e40499e0019f95e72c43, type: 3}
 --- !u!136 &2692346285586827641
 CapsuleCollider:
@@ -288,8 +292,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1209759785828144538}
   m_SourcePrefab: {fileID: 100100000, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
+--- !u!1 &3525574122528140922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
+  m_PrefabInstance: {fileID: 4335896813217534763}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1209759785828144538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3525574122528140922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c37cbb7ce0327244c9ccabe07d63ec94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4298274973395006656 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}

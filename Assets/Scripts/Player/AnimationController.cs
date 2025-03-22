@@ -20,6 +20,7 @@ public class AnimationController : MonoBehaviour
         animator.SetBool("inGround", pMovement.isGround); 
         animator.SetBool("isMoving", pMovement.isMoving);
         animator.SetBool("isJumping", pMovement.isJumping);
+        animator.SetBool("Dead", pMovement.dead);
 
         if (pMovement.isJumping)
             StartCoroutine(changeBool(1f));

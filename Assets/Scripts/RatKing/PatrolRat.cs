@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class PatrolRat : MonoBehaviour
-{ 
+{
+    PlayerMovement p;
     public LayerMask whatIsGround, whatIsPlayer;
     //public float health;
 
@@ -72,8 +74,20 @@ public class PatrolRat : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
+            p = collision.gameObject.GetComponent<PlayerMovement>();
+            p.dead = true;
+            Debug.Log("PlayerDead " + p.dead );
+
+            StartCoroutine(pLose(1f));
             Debug.Log("PlayerCaught!");
-            SceneManager.LoadScene("LoseScreen");
         }
+    }
+
+    IEnumerator pLose(float waitTime)
+    {
+
+        yield return new WaitForSeconds(waitTime);
+        SceneManager.LoadScene("LoseScreen");
+
     }
 }
