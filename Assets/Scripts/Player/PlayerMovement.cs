@@ -20,7 +20,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask ground;
-    bool isGround;
+    public bool isGround;
+    public bool isMoving;
 
     [Header("Bullet")]
     public GameObject bullet;
@@ -128,8 +129,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (hInput != 0 || vInput != 0)
         {
+            isMoving = true;
             rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
             
+        } else
+        {
+            isMoving = false;
         }
 
     }

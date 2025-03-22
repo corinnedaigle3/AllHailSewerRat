@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7141113636995161460}
   - component: {fileID: 2947687101484117566}
   - component: {fileID: 2372772688910647654}
+  - component: {fileID: 3071729672534420094}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -68,7 +69,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 1
   m_Radius: 0.22
   m_SlopeLimit: 60
   m_StepOffset: 0
@@ -97,6 +98,8 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 8
+  isGround: 0
+  isMoving: 0
   bullet: {fileID: 6788668502514363156, guid: bf86849402951c54989b8597e58104ba, type: 3}
   shooting: 0
   readyToShoot: 0
@@ -122,7 +125,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.26
-  m_Height: 1.7985897
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &3094285221186115364
@@ -214,6 +217,18 @@ MonoBehaviour:
   OpenDoorWithCheese: 0
   OpenMiniDoorWithKey: 0
   playerMovement: {fileID: 2875421178616641582}
+--- !u!114 &3071729672534420094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7515203306641820812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad9bd0aa4c63014e827720c35f26aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4335896813217534763
 PrefabInstance:
   m_ObjectHideFlags: 0
