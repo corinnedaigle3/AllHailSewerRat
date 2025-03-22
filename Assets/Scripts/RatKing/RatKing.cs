@@ -74,8 +74,6 @@ public class RatKing : MonoBehaviour
         cheese = playerO.GetComponent<GotItem>();
         DoorWithCheese = cheese.OpenDoorWithCheese;
 
-        DoorWithCheese = true;
-
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
