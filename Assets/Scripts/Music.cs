@@ -5,20 +5,20 @@ using UnityEngine;
 public class Music : MonoBehaviour
 {
     public GameObject player;
-    public bool DoorWithCheese;
+    public bool DoorWithCheese = false;
     GotItem cheese;
 
     public GameObject ratKing;
-    public bool textSight;
+    public bool textSight = false;
     RatKing rat;
 
     public AudioSource bM1;
     public AudioSource bM2;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        player = player = GameObject.Find("Player");
+        player = GameObject.Find("Player");
         ratKing = GameObject.Find("RatKing");
 
         bM1.Play();
@@ -26,7 +26,7 @@ public class Music : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         cheese = player.GetComponent<GotItem>();
         DoorWithCheese = cheese.OpenDoorWithCheese;
@@ -35,12 +35,11 @@ public class Music : MonoBehaviour
 
         if (DoorWithCheese == true && textSight == true)
         {
-            bM1.Stop();
-            bM2.Stop();
+            bM1.Pause();
+            bM2.Pause();
         }
-
-        if (DoorWithCheese == false && textSight == false)
-        {
+        else
+        { 
             bM1.Play();
             bM2.Play();
         }

@@ -7,10 +7,14 @@ public class RatKing : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
+
+    [Header("Music")]
     public AudioSource kingAttackSound;
     public AudioSource chaseMusic;
+    public AudioSource bM1;
+    public AudioSource bM2;
 
-   [Header("Attacking")]
+    [Header("Attacking")]
     public float timeBetweenAttacks;
     private bool alreadyAttacked;
     public GameObject projectileKey;
@@ -56,6 +60,9 @@ public class RatKing : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         transform.LookAt(player);
         rb = GetComponent<Rigidbody>();
+
+        bM1.Play();
+        bM2.Play();
     }
 
     private void Update()
@@ -80,6 +87,17 @@ public class RatKing : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange && playerInTextRange)
         {
             TextUpdate();
+        }
+
+        if (DoorWithCheese == true && playerInTextRange == true)
+        {
+            bM1.Pause();
+            bM2.Pause();
+        }
+        else if (DoorWithCheese == false && playerInTextRange == false)
+        {
+            bM1.Play();
+            bM2.Play();
         }
     }
 

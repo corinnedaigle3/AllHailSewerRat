@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     // public Transform orientation;
 
-    private GameObject camera;
+    private GameObject playerCamera;
     Transform cam;
     private GameObject theLookAtPoint;
     Transform lookAt;
@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
         theLookAtPoint = GameObject.Find("LookAtPoint");
-        camera = GameObject.Find("MainCamera");
+        playerCamera = GameObject.Find("MainCamera");
          cam = theLookAtPoint.GetComponent<Transform>();
         lookAt = theLookAtPoint.GetComponent<Transform>();
         ratKing = GameObject.Find("RatKing");
