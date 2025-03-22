@@ -7,7 +7,8 @@ public class RatKing : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
-    private AudioSource audioSource;
+    public AudioSource kingAttackSound;
+    public AudioSource chaseMusic;
 
    [Header("Attacking")]
     public float timeBetweenAttacks;
@@ -55,7 +56,6 @@ public class RatKing : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         transform.LookAt(player);
         rb = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -196,6 +196,7 @@ public class RatKing : MonoBehaviour
             {
                 ratKingTextC3.gameObject.SetActive(false);
                 ratKingTextC4.gameObject.SetActive(true);
+                chaseMusic.Play();
             }
             else
             {
@@ -218,8 +219,8 @@ public class RatKing : MonoBehaviour
                 ratKingTextK1.gameObject.SetActive(true);
             }
             else if (textTimeK >= 2f)
-            { 
-                audioSource.Play();
+            {
+                kingAttackSound.Play();
             }
             else if (textTimeK >= 1f)
             {

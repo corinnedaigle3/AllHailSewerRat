@@ -12,11 +12,17 @@ public class Music : MonoBehaviour
     public bool textSight;
     RatKing rat;
 
+    public AudioSource bM1;
+    public AudioSource bM2;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         player = player = GameObject.Find("Player");
         ratKing = GameObject.Find("RatKing");
+
+        bM1.Play();
+        bM2.Play();
     }
 
     // Update is called once per frame
@@ -25,6 +31,18 @@ public class Music : MonoBehaviour
         cheese = player.GetComponent<GotItem>();
         DoorWithCheese = cheese.OpenDoorWithCheese;
         rat = ratKing.GetComponent<RatKing>();
-        textSight = rat.playerInSightRange;
+        textSight = rat.playerInTextRange;
+
+        if (DoorWithCheese == true && textSight == true)
+        {
+            bM1.Stop();
+            bM2.Stop();
+        }
+
+        if (DoorWithCheese == false && textSight == false)
+        {
+            bM1.Play();
+            bM2.Play();
+        }
     }
 }
