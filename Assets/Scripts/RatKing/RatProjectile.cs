@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class RatProjectile : MonoBehaviour
 {
-    public float loseScreenTimer = .5f;
+    public float loseScreenTimer = .27f;
 
     // Update is called once per frame
     void Update()
     {
-        Destroy(gameObject, 4f);
+        
     }
 
     private void OnCollisionEnter(Collision other)

@@ -7,8 +7,9 @@ public class RatKing : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
+    private AudioSource audioSource;
 
-    [Header("Attacking")]
+   [Header("Attacking")]
     public float timeBetweenAttacks;
     private bool alreadyAttacked;
     public GameObject projectileKey;
@@ -42,9 +43,9 @@ public class RatKing : MonoBehaviour
     private float textTimeK = 6f;
 
     [Header ("Bools")]
-    public bool OpenDoorWithKey;
-    public bool OpenDoorWithCheese;
-    public bool ratKingDead;
+    public bool OpenDoorWithKey = false;
+    public bool OpenDoorWithCheese = false;
+    public bool ratKingDead = false;
     public bool isTalking = false;
 
     // Start is called before the first frame update
@@ -54,13 +55,14 @@ public class RatKing : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         transform.LookAt(player);
         rb = GetComponent<Rigidbody>();
-        ratKingDead = false;
-        OpenDoorWithCheese = GameObject.Find("Player").GetComponent<GotItem>().OpenDoorWithCheese;
-        OpenDoorWithKey = GameObject.Find("Player").GetComponent<GotItem>().OpenDoorWithKey;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
+        OpenDoorWithCheese = GameObject.Find("Player").GetComponent<GotItem>().OpenDoorWithCheese;
+        OpenDoorWithKey = GameObject.Find("Player").GetComponent<GotItem>().OpenDoorWithKey;
+
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -84,12 +86,12 @@ public class RatKing : MonoBehaviour
     {
         if (OpenDoorWithCheese == false && ratKingDead == false)
         {
+            agent.SetDestination(player.transform.position);
+        }
+        if (OpenDoorWithCheese == true && ratKingDead == false)
+        {
             Vector3 moveFromPlayer = transform.position - player.position;
             agent.SetDestination(transform.position + moveFromPlayer.normalized * distanceFromPlayer);
-        }
-        else 
-        {
-            agent.SetDestination(player.transform.position * distanceFromPlayer);
         }
     }
 
@@ -107,12 +109,13 @@ public class RatKing : MonoBehaviour
             {
                 Rigidbody rb = Instantiate(projectileCheese, spawnPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             }
-            else 
+            if (OpenDoorWithCheese == false)
             {
                 Rigidbody rb = Instantiate(projectileKey, spawnPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+                Debug.Log("Die!");
             }
 
-            rb.AddForce(transform.forward * 34f, ForceMode.Impulse);
+            rb.AddForce(transform.forward * 60f, ForceMode.Impulse);
             rb.AddForce(transform.up * 4f, ForceMode.Impulse);
 
             if (OpenDoorWithCheese == true && ratKingDead == false)
@@ -195,6 +198,7 @@ public class RatKing : MonoBehaviour
             }
             else
             {
+                sightRange = textRange;
                 ratKingTextC1.gameObject.SetActive(false);
                 ratKingTextC2.gameObject.SetActive(false);
                 ratKingTextC3.gameObject.SetActive(false);
@@ -212,13 +216,20 @@ public class RatKing : MonoBehaviour
             {
                 ratKingTextK1.gameObject.SetActive(true);
             }
+            else if (textTimeK >= 2f)
+            { 
+                audioSource.Play();
+            }
             else if (textTimeK >= 1f)
             {
                 ratKingTextK1.gameObject.SetActive(false);
                 ratKingTextK2.gameObject.SetActive(true);
+                
             }
             else
             {
+                sightRange = textRange;
+                attackRange = textRange;
                 ratKingTextK1.gameObject.SetActive(false);
                 ratKingTextK2.gameObject.SetActive(false);
                 isTalking = false;
