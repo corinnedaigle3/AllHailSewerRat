@@ -84,7 +84,7 @@ MonoBehaviour:
   hInput: 0
   vInput: 0
   moveDirection: {x: 0, y: 0, z: 0}
-  ratKing: {fileID: 0}
+  ratKing: {fileID: 4653472159954967495, guid: bf5fe0362414f1741aa2cfc2b6ec61d7, type: 3}
 --- !u!136 &2692346285586827641
 CapsuleCollider:
   m_ObjectHideFlags: 0
