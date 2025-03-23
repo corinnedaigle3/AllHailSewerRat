@@ -8,6 +8,8 @@ public class Door : MonoBehaviour
     public GameObject player;
     //public GameObject openDoor;
     private GotItem gotItem;
+    private ButtonsKey buttonKey;
+
     public AudioSource doorCheese;
     public AudioSource doorKey;
 
@@ -18,10 +20,10 @@ public class Door : MonoBehaviour
             gotItem = player.GetComponent<GotItem>();
         }
 
-/*        if (gotKey == null)
-        {
-            Debug.Log("GotKey component not found on Player!");
-        }*/
+        /*        if (gotKey == null)
+                {
+                    Debug.Log("GotKey component not found on Player!");
+                }*/
     }
 
     public void DoorWithKey()
@@ -42,7 +44,7 @@ public class Door : MonoBehaviour
 
     public void MiniDoor()
     {
-        if (gotItem.OpenMiniDoorWithKey)
+        if (gotItem.OpenMiniDoor)
         {
             gameObject.SetActive(false);
             Debug.Log("Door opened.");

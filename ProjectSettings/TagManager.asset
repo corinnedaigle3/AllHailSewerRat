@@ -13,6 +13,7 @@ TagManager:
   - Key
   - Cheese
   - RatKing
+  - ButtonsKey
   layers:
   - Default
   - TransparentFX

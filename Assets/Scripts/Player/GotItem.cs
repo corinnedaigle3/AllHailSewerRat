@@ -6,41 +6,34 @@ public class GotItem : MonoBehaviour
 {
     private int keyCount = 0;
     private int cheeseCount = 0;
+    public int buttonCount = 0;
     public bool OpenDoorWithKey;
     public bool OpenDoorWithCheese;
-    public bool OpenMiniDoorWithKey;
+    public bool OpenMiniDoor;
 
     public PlayerMovement playerMovement;
+    private GameObject Buttons;
+    private ButtonsKey ButtonsKey;
 
     void Start()
     {
         OpenDoorWithKey = false;
         OpenDoorWithCheese = false;
- 
+        OpenMiniDoor = false;
+
+        Buttons = GameObject.FindWithTag("ButtonsKey");
+        ButtonsKey = Buttons.GetComponent<ButtonsKey>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
+
+
         if (other.CompareTag("Key"))
         {
             Destroy(other.gameObject);
             keyCount++;
-
-            if (keyCount == 2)
-            {
-                OpenMiniDoorWithKey = true;
-            }
-
-            if (keyCount >= 3)
-            {
-                OpenDoorWithKey = true;
-                Debug.Log("Keys collected: " + keyCount);
-
-            }
-            else
-            {
-                Debug.Log("Keys collected: " + keyCount);
-            }
+            OpenDoorWithKey = true;
         }
 
         if (other.CompareTag("Cheese"))
@@ -51,6 +44,14 @@ public class GotItem : MonoBehaviour
             playerMovement.readyToShoot = true;
             Debug.Log("Cheese collected: " + cheeseCount);
 
+        }
+    }
+
+    private void Update()
+    {
+        if (buttonCount == 3)
+        {
+            OpenMiniDoor = true;
         }
     }
 }
