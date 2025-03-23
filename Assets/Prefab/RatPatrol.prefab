@@ -228,6 +228,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7068552712233315130, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b111d0aac62a1cd43b697695e4f94e03, type: 2}
+    - target: {fileID: -6167441406440124328, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c5c0d410ff3154845a1b7bf42008d64a, type: 2}
+    - target: {fileID: 551823907170371492, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b111d0aac62a1cd43b697695e4f94e03, type: 2}
     - target: {fileID: 919132149155446097, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
       propertyPath: m_Name
       value: ratMC_rig
@@ -236,6 +248,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: dde2d7757c76036429403aecb4c43a70, type: 2}
+    - target: {fileID: 7930664783988850713, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c5c0d410ff3154845a1b7bf42008d64a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
