@@ -12,6 +12,8 @@ public class HPBars : MonoBehaviour
     public bool bTalkingDone;
     public bool whichHpBar;
 
+    public float hpBarTimer = 1f;
+
     public GameObject ratKing;
     RatKing rat;
 
@@ -27,14 +29,26 @@ public class HPBars : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+
         rat = ratKing.GetComponent<RatKing>();
         bTalkingDone = rat.talkingDone;
         whichHpBar = rat.DoorWithCheese;
 
         if (bTalkingDone == true && whichHpBar == true)
         {
-            OHP();
+            hpBarTimer -= Time.deltaTime;
+
+            if (hpBarTimer > 0)
+            {
+                FHP(); 
+            }
+            if (hpBarTimer <= 0)
+            {
+                OHP();
+            }
         }
+
         if (bTalkingDone == true && whichHpBar == false)
         {
             FHP();

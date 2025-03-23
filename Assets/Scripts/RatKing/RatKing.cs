@@ -55,7 +55,9 @@ public class RatKing : MonoBehaviour
     public bool isTalking = false;
     public bool DoorWithCheese = false;
     public bool talkingDone = false;
-    GotItem cheese; 
+    GotItem cheese;
+
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +67,10 @@ public class RatKing : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         transform.LookAt(player.transform);
         rb = GetComponent<Rigidbody>();
-        
+        animator = GetComponent<Animator>();
+
+        animator.SetBool("isRunning", false);
+
         bM1.Play();
         bM2.Play();
     }
@@ -84,14 +89,17 @@ public class RatKing : MonoBehaviour
         if (playerInSightRange && playerInTextRange && !playerInAttackRange)
         {
             ChasePlayer();
+            animator.SetBool("isRunnig", true);
         }
         if (playerInSightRange && playerInTextRange && playerInAttackRange)
         {
             AttackPlayer();
+            animator.SetBool("isRunning", true);
         }
         if (!playerInSightRange && !playerInAttackRange && playerInTextRange)
         {
             TextUpdate();
+            animator.SetBool("isRunning", false);
         }
     }
 
