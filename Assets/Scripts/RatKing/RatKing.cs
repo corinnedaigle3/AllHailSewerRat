@@ -70,8 +70,7 @@ public class RatKing : MonoBehaviour
         transform.LookAt(player.transform);
         rb = GetComponent<Rigidbody>();
         animator = ratKing.GetComponentInChildren<Animator>();
-
-        animator.SetBool("isRunningF", false);
+        animator.SetBool("isRunnngF", false);
         animator.SetBool("isRunningB", false);
 
         bM1.Play();
@@ -108,16 +107,16 @@ public class RatKing : MonoBehaviour
         if (DoorWithCheese == false && ratKingDead == false)
         {
             agent.SetDestination(player.transform.position);
-            animator.SetBool("isRunnigF", true);
-            animator.SetBool("isRunnigB", false);
+            animator.SetBool("isRunnngF", true);
+            animator.SetBool("isRunningB", false);
         }
         if (DoorWithCheese == true && ratKingDead == false)
         {
             Vector3 moveFromPlayer = transform.position - player.position;
             agent.SetDestination(transform.position + moveFromPlayer.normalized * distanceFromPlayer);
             Dodge();
-            animator.SetBool("isRunnigF", false);
-            animator.SetBool("isRunnigB", true);
+            animator.SetBool("isRunnngF", false);
+            animator.SetBool("isRunningB", true);
         }
     }
 
