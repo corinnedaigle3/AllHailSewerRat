@@ -71,10 +71,9 @@ public class RatKing : MonoBehaviour
 
     private void Update()
     {
+        transform.LookAt(player.transform);
         cheese = playerO.GetComponent<GotItem>();
         DoorWithCheese = cheese.OpenDoorWithCheese;
-
-        DoorWithCheese = true;
 
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -240,7 +239,6 @@ public class RatKing : MonoBehaviour
             {
                 ratKingTextK1.gameObject.SetActive(false);
                 ratKingTextK2.gameObject.SetActive(true);
-                
             }
             else
             {
