@@ -83943,6 +83943,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1604666415830106995, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c5c0d410ff3154845a1b7bf42008d64a, type: 2}
+    - target: {fileID: 2435119117924157421, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d695ae984b995274085e91e5ce678cf3, type: 2}
     - target: {fileID: 2947687101484117566, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
       propertyPath: interactionText
       value: 
@@ -83951,6 +83959,14 @@ PrefabInstance:
       propertyPath: ThirdPersonCamera
       value: 
       objectReference: {fileID: 1741189760}
+    - target: {fileID: 4288636061822817423, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d695ae984b995274085e91e5ce678cf3, type: 2}
+    - target: {fileID: 5918665283724071730, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c5c0d410ff3154845a1b7bf42008d64a, type: 2}
     - target: {fileID: 7515203306641820812, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
       propertyPath: m_Name
       value: Player
