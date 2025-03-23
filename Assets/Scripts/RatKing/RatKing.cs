@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
-using System.Runtime.CompilerServices;
+using UnityEngine.SceneManagement;
 
 public class RatKing : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class RatKing : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public GameObject playerO;
+    public GameObject ratKing;
     public LayerMask whatIsGround, whatIsPlayer;
 
     [Header("Music")]
@@ -67,9 +68,9 @@ public class RatKing : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         transform.LookAt(player.transform);
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
-
-        animator.SetBool("isRunning", false);
+        animator = ratKing.GetComponentInChildren<Animator>();
+        animator.SetBool("isRunnngF", false);
+        animator.SetBool("isRunningB", false);
 
         bM1.Play();
         bM2.Play();
@@ -89,17 +90,14 @@ public class RatKing : MonoBehaviour
         if (playerInSightRange && playerInTextRange && !playerInAttackRange)
         {
             ChasePlayer();
-            animator.SetBool("isRunnig", true);
         }
         if (playerInSightRange && playerInTextRange && playerInAttackRange)
         {
             AttackPlayer();
-            animator.SetBool("isRunning", true);
         }
         if (!playerInSightRange && !playerInAttackRange && playerInTextRange)
         {
             TextUpdate();
-            animator.SetBool("isRunning", false);
         }
     }
 
@@ -108,11 +106,16 @@ public class RatKing : MonoBehaviour
         if (DoorWithCheese == false && ratKingDead == false)
         {
             agent.SetDestination(player.transform.position);
+            animator.SetBool("isRunnngF", true);
+            animator.SetBool("isRunningB", false);
         }
         if (DoorWithCheese == true && ratKingDead == false)
         {
             Vector3 moveFromPlayer = transform.position - player.position;
             agent.SetDestination(transform.position + moveFromPlayer.normalized * distanceFromPlayer);
+            Dodge();
+            animator.SetBool("isRunnngF", false);
+            animator.SetBool("isRunningB", true);
         }
     }
 
@@ -178,13 +181,8 @@ public class RatKing : MonoBehaviour
 
         if (other.tag == "Projectile")
         {
-            //SceneManager.LoadScene("Present");
+            SceneManager.LoadScene("Lose");
         }
-    }
-
-    private void DestroyEnemy()
-    {
-        Destroy(gameObject);
     }
 
     private void TextUpdate()
