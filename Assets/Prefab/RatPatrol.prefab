@@ -120,7 +120,7 @@ MonoBehaviour:
   patrolRoute: {fileID: 0}
   player: {fileID: 0}
   t: 0
-  sightRange: 15
+  sightRange: 20
   playerInSightRange: 0
 --- !u!195 &449440647570730582
 NavMeshAgent:

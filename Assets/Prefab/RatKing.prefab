@@ -162,9 +162,9 @@ MonoBehaviour:
   projectileKey: {fileID: 868073487894231498, guid: c989153a582b7604dbdd24948a0b9ba1, type: 3}
   projectileCheese: {fileID: 8833922503176554108, guid: 618b0a63901ce4d47bb9a499365d8f2d, type: 3}
   spawnPoint: {fileID: 1946567674991670069}
-  sightRange: 14
+  sightRange: 19
   attackRange: 12
-  textRange: 15
+  textRange: 20
   playerInSightRange: 0
   playerInAttackRange: 0
   playerInTextRange: 0
