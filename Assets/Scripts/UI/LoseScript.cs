@@ -11,6 +11,10 @@ public class LoseScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene("Game");
+        } else if (Input.GetKeyDown(KeyCode.P))
+        {
+            SceneManager.LoadScene("MainMenu");
+
         }
     }
 }
