@@ -37,8 +37,8 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
 
         //Unlocks cursor
-        //Cursor.lockState = CursorLockMode.None;
-        //Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void ResumeGame()
@@ -48,12 +48,18 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
 
         // Locks cursor
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("MainMenu");
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
 }
