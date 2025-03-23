@@ -45,8 +45,6 @@ GameObject:
   - component: {fileID: 7463705153536117936}
   - component: {fileID: 1041924191492993844}
   - component: {fileID: 2845313718487772627}
-  - component: {fileID: 861849844844935536}
-  - component: {fileID: 6351339170776149873}
   - component: {fileID: 2546242467764686026}
   - component: {fileID: 4787291825059057523}
   - component: {fileID: 8039845290049049365}
@@ -149,6 +147,7 @@ MonoBehaviour:
   agent: {fileID: 2845313718487772627}
   player: {fileID: 7664769202925130913, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
   playerO: {fileID: 7515203306641820812, guid: 9e4031cf4633ac94a9920a9da82b909e, type: 3}
+  ratKing: {fileID: 4653472159954967495}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 32776
@@ -185,6 +184,7 @@ MonoBehaviour:
   isTalking: 0
   DoorWithCheese: 1
   talkingDone: 0
+  animator: {fileID: 5135878043062487281}
 --- !u!195 &2845313718487772627
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -195,7 +195,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -207,42 +207,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!95 &861849844844935536
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4653472159954967495}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 081930da5e255e348940373200bbeaca, type: 3}
-  m_Controller: {fileID: 9100000, guid: ce519a544a5417c4aa3c4251d620d5a4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!111 &6351339170776149873
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4653472159954967495}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 5987713911036300057, guid: 081930da5e255e348940373200bbeaca, type: 3}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!82 &2546242467764686026
 AudioSource:
   m_ObjectHideFlags: 0
@@ -680,6 +644,10 @@ PrefabInstance:
       value: ratMC_rig
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
+    - target: {fileID: 5866666021909216657, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: dde2d7757c76036429403aecb4c43a70, type: 2}
@@ -691,6 +659,11 @@ PrefabInstance:
 --- !u!4 &1271810644568052363 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
+  m_PrefabInstance: {fileID: 1597889975665784160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5135878043062487281 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: bad86f489e993ee4fb589af2e8ef77fd, type: 3}
   m_PrefabInstance: {fileID: 1597889975665784160}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2838666817327002991

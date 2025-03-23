@@ -559,10 +559,6 @@ PrefabInstance:
       propertyPath: ratKingTextK2
       value: 
       objectReference: {fileID: 572670220}
-    - target: {fileID: 2845313718487772627, guid: bf5fe0362414f1741aa2cfc2b6ec61d7, type: 3}
-      propertyPath: m_Speed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4653472159954967495, guid: bf5fe0362414f1741aa2cfc2b6ec61d7, type: 3}
       propertyPath: m_Name
       value: RatKing

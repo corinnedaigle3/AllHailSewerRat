@@ -18,7 +18,7 @@ public class GotItem : MonoBehaviour
     void Start()
     {
         OpenDoorWithKey = false;
-        OpenDoorWithCheese = false;
+        OpenDoorWithCheese = true;
         OpenMiniDoor = false;
 
         Buttons = GameObject.FindWithTag("ButtonsKey");
