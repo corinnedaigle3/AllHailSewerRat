@@ -8,6 +8,7 @@ public class CollectingText : MonoBehaviour
     GotItem g;
     public GameObject cheeseText;
     public GameObject keyText;
+    bool stop = false;
     
 
     // Start is called before the first frame update
@@ -20,12 +21,13 @@ public class CollectingText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (g.OpenDoorWithCheese)
+        if (g.OpenDoorWithCheese && !stop)
         {
             StartCoroutine(collectionText(5f, cheeseText));
+
         }
 
-        if (g.OpenDoorWithKey)
+        if (g.OpenDoorWithKey && !stop)
         {
             StartCoroutine(collectionText(5f, keyText));
         }
@@ -36,5 +38,6 @@ public class CollectingText : MonoBehaviour
         game.SetActive(true);
         yield return new WaitForSeconds(waitTime);
         game.SetActive(false);
+        stop = true;
     }
 }
