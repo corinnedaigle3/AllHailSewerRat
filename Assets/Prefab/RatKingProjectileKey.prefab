@@ -146,4 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61900c37599a83347a19c5e1c0358abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loseScreenTimer: 0.27
+  loseScreenTimer: 0.25

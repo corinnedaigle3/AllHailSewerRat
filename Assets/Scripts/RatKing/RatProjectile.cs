@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class RatProjectile : MonoBehaviour
 {
-    public float loseScreenTimer = .27f;
+    public float loseScreenTimer = .25f;
 
     // Update is called once per frame
     void Update()

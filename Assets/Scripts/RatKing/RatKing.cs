@@ -71,6 +71,7 @@ public class RatKing : MonoBehaviour
 
     private void Update()
     {
+        transform.LookAt(player.transform);
         cheese = playerO.GetComponent<GotItem>();
         DoorWithCheese = cheese.OpenDoorWithCheese;
 
@@ -238,7 +239,6 @@ public class RatKing : MonoBehaviour
             {
                 ratKingTextK1.gameObject.SetActive(false);
                 ratKingTextK2.gameObject.SetActive(true);
-                
             }
             else
             {
