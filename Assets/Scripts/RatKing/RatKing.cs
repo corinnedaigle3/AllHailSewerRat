@@ -54,6 +54,7 @@ public class RatKing : MonoBehaviour
     public bool ratKingDead = false;
     public bool isTalking = false;
     public bool DoorWithCheese = false;
+    public bool talkingDone = false;
     GotItem cheese; 
 
     // Start is called before the first frame update
@@ -213,6 +214,7 @@ public class RatKing : MonoBehaviour
             }
             else
             {
+                talkingDone = true;
                 sightRange = textRange;
                 ratKingTextC1.gameObject.SetActive(false);
                 ratKingTextC2.gameObject.SetActive(false);
@@ -242,8 +244,9 @@ public class RatKing : MonoBehaviour
             }
             else
             {
+                talkingDone = true;
                 sightRange = textRange;
-                attackRange = textRange;
+                //attackRange = textRange;
                 ratKingTextK1.gameObject.SetActive(false);
                 ratKingTextK2.gameObject.SetActive(false);
                 isTalking = false;
