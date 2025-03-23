@@ -11,8 +11,8 @@ public class Interactor : MonoBehaviour
 
     void Update()
     {
-        Ray r = new Ray(Player.position + Vector3.up, ThirdPersonCamera.transform.forward);
-        Debug.DrawRay(Player.position + Vector3.up, ThirdPersonCamera.transform.forward, Color.red);
+        Ray r = new Ray(Player.position + Vector3.up * 1.2f, ThirdPersonCamera.transform.forward);
+        Debug.DrawRay(Player.position + Vector3.up * 1.2f, ThirdPersonCamera.transform.forward, Color.red);
 
         RaycastHit hit;
 
