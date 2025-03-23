@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System.Runtime.CompilerServices;
 
 public class RatKing : MonoBehaviour
 {
