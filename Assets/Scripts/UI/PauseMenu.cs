@@ -6,60 +6,60 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenu;
-    public static bool isPaused;
+    public GameObject pauseMenu; // Reference to the UI panel for the pause menu
+    public static bool isPaused; // Tracks whether the game is currently paused
 
     // Start is called before the first frame update
     void Start()
     {
-        pauseMenu.SetActive(false);
+        pauseMenu.SetActive(false); // Ensure pause menu is hidden at game start
     }
 
     void Update()
     {
+        // Toggle pause when player presses "P"
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (isPaused)
             {
-                ResumeGame();
+                ResumeGame(); // Unpause if already paused
             }
             else
             {
-                PauseGame();
+                PauseGame(); // Pause if not paused
             }
         }
     }
 
     public void PauseGame()
     {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
+        pauseMenu.SetActive(true); // Show pause menu UI
+        Time.timeScale = 0f; // Freeze all in-game physics and movement
         isPaused = true;
 
-        //Unlocks cursor
+        // Unlock the cursor so the player can click UI buttons
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
     public void ResumeGame()
     {
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
+        pauseMenu.SetActive(false); // Hide pause menu UI
+        Time.timeScale = 1f; // Resume game time
         isPaused = false;
 
-        // Locks cursor
+        // Lock the cursor back to the center for gameplay
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu"); // Load the main menu scene
     }
 
     public void Quit()
     {
-        Application.Quit();
+        Application.Quit(); // Close the application/game
     }
-
 }

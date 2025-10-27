@@ -7,6 +7,7 @@ public class RatProjectileWCheese : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //destroy after 4 sec
         Destroy(gameObject, 4f);
     }
 

@@ -5,51 +5,56 @@ using UnityEngine.SceneManagement;
 
 public class MainCreditsUI : MonoBehaviour
 {
-    public GameObject credits;
-    public GameObject start;
-    public GameObject quit;
-    public GameObject back;
-    public GameObject mainMenu;
-    public GameObject creditsMenu;
+    // UI elements
+    public GameObject credits; // Text or panel showing credits
+    public GameObject start; // Start button
+    public GameObject quit; // Quit button
+    public GameObject back; // Back button (from credits)
+    public GameObject mainMenu; // Main menu panel
+    public GameObject creditsMenu; // Credits panel
 
     // Start is called before the first frame update
     void Start()
     {
+        // Unlock cursor and make it visible
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        
-        credits.gameObject.SetActive(true);
-        start.gameObject.SetActive(true);
-        quit.gameObject.SetActive(true);
-        back.gameObject.SetActive(false);
 
-        mainMenu.gameObject.SetActive(true);
-        creditsMenu.gameObject.SetActive(false);
+        // Set initial UI visibility
+        credits.gameObject.SetActive(true); // Show title or credits text
+        start.gameObject.SetActive(true); // Show start button
+        quit.gameObject.SetActive(true); // Show quit button
+        back.gameObject.SetActive(false); // Hide back button initially
+
+        mainMenu.gameObject.SetActive(true); // Show main menu panel
+        creditsMenu.gameObject.SetActive(false); // Hide credits panel initially
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // Currently unused; could handle keyboard shortcuts if needed
     }
 
+    // Load the main game scene
     public void Play()
     {
         SceneManager.LoadScene("Game");
     }
 
+    // Return from credits view to main menu view
     public void BackToMenu()
     {
-        credits.gameObject.SetActive(true);
-        start.gameObject.SetActive(true);
-        quit.gameObject.SetActive(true);
-        back.gameObject.SetActive(false);
+        credits.gameObject.SetActive(true); // Show title
+        start.gameObject.SetActive(true); // Show start button
+        quit.gameObject.SetActive(true); // Show quit button
+        back.gameObject.SetActive(false); // Hide back button
 
-        mainMenu.gameObject.SetActive(true);
-        creditsMenu.gameObject.SetActive(false);
+        mainMenu.gameObject.SetActive(true); // Show main menu panel
+        creditsMenu.gameObject.SetActive(false); // Hide credits panel
     }
 
-
+    // Exit the game if Escape key is pressed
     public void Esc()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -58,19 +63,21 @@ public class MainCreditsUI : MonoBehaviour
         }
     }
 
+    // Exit the game (called from quit button)
     public void Quit()
     {
         Application.Quit();
     }
 
+    // Show credits panel and hide main menu buttons
     public void Credits()
     {
-        credits.gameObject.SetActive(false);
-        start.gameObject.SetActive(false);
-        quit.gameObject.SetActive(false);
-        back.gameObject.SetActive(true);
+        credits.gameObject.SetActive(false); // Hide title
+        start.gameObject.SetActive(false); // Hide start button
+        quit.gameObject.SetActive(false); // Hide quit button
+        back.gameObject.SetActive(true); // Show back button
 
-        mainMenu.gameObject.SetActive(false);
-        creditsMenu.gameObject.SetActive(true);
+        mainMenu.gameObject.SetActive(false); // Hide main menu panel
+        creditsMenu.gameObject.SetActive(true); // Show credits panel
     }
 }
